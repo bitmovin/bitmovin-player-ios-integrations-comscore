@@ -1,0 +1,22 @@
+def shared_pods
+    pod 'BitmovinComScoreAnalytics', path: '../'
+    pod 'BitmovinPlayer', git: 'https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git', tag: '2.14.0'
+    pod 'SwiftLint'
+end
+
+
+
+target 'BitmovinComScoreAnalytics_Example' do
+  use_frameworks!
+  platform :ios, '9.0'
+  shared_pods
+
+end
+
+#target 'BitmovinComScoreAnalytics_Tests' do
+#    use_frameworks!
+#    platform :ios, '9.0'
+#    shared_pods
+#    pod 'Quick', '~> 1.3.2'
+#    pod 'Nimble', '~> 7.3.1'
+#end

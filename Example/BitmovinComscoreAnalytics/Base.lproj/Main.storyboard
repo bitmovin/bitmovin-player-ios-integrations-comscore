@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BitmovinComScoreAnalytics_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CD-o4-NTg">
+                                <rect key="frame" x="0.0" y="28" width="1024" height="1338"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nN-Wu-Vws" userLabel="playerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1338"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2nN-Wu-Vws" secondAttribute="trailing" id="4dQ-bW-8Vw"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="centerY" secondItem="1CD-o4-NTg" secondAttribute="centerY" id="Tho-cm-fG0"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="leading" secondItem="1CD-o4-NTg" secondAttribute="leading" id="l3h-NK-11R"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="1CD-o4-NTg" secondAttribute="top" id="qQr-Jd-txv"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIV-Jg-AD5">
+                                <rect key="frame" x="231" y="32" width="48" height="30"/>
+                                <state key="normal" title="LIVE"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-kh-a47">
+                                <rect key="frame" x="25" y="32" width="32" height="30"/>
+                                <state key="normal" title="VOD"/>
+                                <connections>
+                                    <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ctb-2I-rX7"/>
+                                    <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="JFo-ZR-QQe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qK-fB-hlo">
+                                <rect key="frame" x="83" y="32" width="49" height="30"/>
+                                <state key="normal" title="Unload"/>
+                                <connections>
+                                    <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="FCz-ZA-Gh6"/>
+                                    <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GfN-gD-czC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzQ-FK-KOf">
+                                <rect key="frame" x="158" y="32" width="47" height="30"/>
+                                <state key="normal" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="CfT-NL-mHi"/>
+                                    <action selector="reloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tXS-jx-fbJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1CD-o4-NTg" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="1jz-vo-9iS"/>
+                            <constraint firstItem="zzQ-FK-KOf" firstAttribute="leading" secondItem="0qK-fB-hlo" secondAttribute="trailing" priority="900" constant="26" id="3bC-LJ-T03"/>
+                            <constraint firstAttribute="trailing" secondItem="kIV-Jg-AD5" secondAttribute="trailing" priority="500" constant="745" id="Fsc-WT-jAf"/>
+                            <constraint firstItem="0qK-fB-hlo" firstAttribute="leading" secondItem="PM8-kh-a47" secondAttribute="trailing" priority="900" constant="26" id="JaZ-nf-15P"/>
+                            <constraint firstItem="PM8-kh-a47" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="25" id="L60-Dp-VBR"/>
+                            <constraint firstItem="kIV-Jg-AD5" firstAttribute="top" secondItem="zzQ-FK-KOf" secondAttribute="top" id="MDO-Gj-kue"/>
+                            <constraint firstItem="0qK-fB-hlo" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="12" id="MR8-GR-gfz"/>
+                            <constraint firstItem="1CD-o4-NTg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="MWB-mZ-bGA"/>
+                            <constraint firstItem="0qK-fB-hlo" firstAttribute="baseline" secondItem="PM8-kh-a47" secondAttribute="baseline" id="QuB-GY-Iko"/>
+                            <constraint firstItem="1CD-o4-NTg" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="S14-fO-Ab4"/>
+                            <constraint firstItem="zzQ-FK-KOf" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="12" id="aiX-Uz-gg3"/>
+                            <constraint firstItem="kIV-Jg-AD5" firstAttribute="leading" secondItem="zzQ-FK-KOf" secondAttribute="trailing" constant="26" id="bPJ-DI-ktL"/>
+                            <constraint firstAttribute="trailing" secondItem="1CD-o4-NTg" secondAttribute="trailing" id="w9j-2T-kw2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="liveButton" destination="kIV-Jg-AD5" id="GfZ-XW-Tah"/>
+                        <outlet property="playerView" destination="2nN-Wu-Vws" id="fcl-Vj-xLm"/>
+                        <outlet property="reloadButton" destination="zzQ-FK-KOf" id="O9q-L3-Wqq"/>
+                        <outlet property="unloadButton" destination="0qK-fB-hlo" id="ahI-hE-jCD"/>
+                        <outlet property="vodButton" destination="PM8-kh-a47" id="z2p-Lx-wlM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="26.116071428571427"/>
+        </scene>
+    </scenes>
+</document>
