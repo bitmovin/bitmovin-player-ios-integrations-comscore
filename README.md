@@ -1,15 +1,4 @@
-# BitmovinComscoreAnalytics
-
-[![CI Status](https://img.shields.io/travis/Cory Zachman/BitmovinComscoreAnalytics.svg?style=flat)](https://travis-ci.org/Cory Zachman/BitmovinComscoreAnalytics)
-[![Version](https://img.shields.io/cocoapods/v/BitmovinComscoreAnalytics.svg?style=flat)](https://cocoapods.org/pods/BitmovinComscoreAnalytics)
-[![License](https://img.shields.io/cocoapods/l/BitmovinComscoreAnalytics.svg?style=flat)](https://cocoapods.org/pods/BitmovinComscoreAnalytics)
-[![Platform](https://img.shields.io/cocoapods/p/BitmovinComscoreAnalytics.svg?style=flat)](https://cocoapods.org/pods/BitmovinComscoreAnalytics)
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+# BitmovinComScoreAnalytics
 
 ## Installation
 
@@ -17,8 +6,62 @@ BitmovinComscoreAnalytics is available through [CocoaPods](https://cocoapods.org
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BitmovinComscoreAnalytics'
+pod 'BitmovinComscoreAnalytics' git: 'https://github.com/bitmovin/bitmovin-player-ios-integrations-comscore.git', tag: '0.9.0'
 ```
+
+Then, in your command line run:
+
+```
+pod install
+```
+
+You can optionally link against AdSupport.Framework to get correct syndicated reporting of the application usage data
+
+## Usage
+
+### Basic Setup
+The following example shows how to set up the BitmovinComScoreAnalytics 
+
+The following example shows how to setup the ComScoreAnalytics:
+```swift
+
+//In your AppDelegate.swift fine add this to your didFinishLaunchingWithOptions method
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    let comscoreConfiguration:ComScoreConfiguration = ComScoreConfiguration(publisherId: "YOUR_PUBLISHER_ID", publisherSecret: "YOUR_PUBLISHER_SECRET", applicationName: "YOUR_APPLICATION_NAME")
+
+    ComScoreAnalytics.addConfiguration(configuration: comscoreConfiguration)
+    ComScoreAnalytics.start()
+
+    return true
+}
+```
+Then create a ComScoreStreamingAnalytics using your current  `BitmovinPlayer` 
+
+```swift 
+// Create a Comscore Configuration
+let comScoreMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
+
+
+comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+```
+
+When changing assets, make sure to call `update(metadata:)` before loading a new asset 
+
+```swift 
+
+bitmovinPlayer.unload()
+
+let newMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
+
+comScoreStreamingAnalytics.update(metadata: newMetadata)
+
+bitmovinPlayer.load(source)
+```
+
+Details about usage of `BitmovinPlayer` can be found [here](https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod).
+
 
 ## Author
 

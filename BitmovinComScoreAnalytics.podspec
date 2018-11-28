@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BitmovinComScoreAnalytics'
-  s.version          = '0.1.0'
+  s.version          = '0.9.0'
   s.summary          = 'ComScore Analytics integration for the Bitmovin Player iOS SDK'
   s.description      = <<-DESC
   Comscore Analytics Integration for the Bitmovin Player iOS SDK
@@ -18,7 +18,5 @@ Pod::Spec.new do |s|
   s.ios.dependency 'ComScore'
   s.tvos.dependency 'ComScore'
   s.source_files = 'BitmovinComscoreAnalytics/Classes/**/*'  
-#  s.ios.vendored_framework = 'lib/Comscore.framework'
-#  s.tvos.vendored_framework = 'lib/Comscore-tvOS.framework'
 
 end

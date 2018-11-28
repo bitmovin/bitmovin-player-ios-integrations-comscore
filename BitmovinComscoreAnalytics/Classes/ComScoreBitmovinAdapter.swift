@@ -30,6 +30,7 @@ class ComScoreBitmovinAdapter: NSObject {
         self.player = player
         self.comScoreContentType = metadata.mediaType.toComscore()
         super.init()
+        self.player.add(listener: self)
         self.dictionary = metadata.dictionary()
     }
 
@@ -49,23 +50,28 @@ class ComScoreBitmovinAdapter: NSObject {
 
 extension ComScoreBitmovinAdapter: PlayerListener {
     func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
+        NSLog("[ComScoreAnalytics] Stopping due to playback finished event")
         comscore.stop()
     }
 
     func onPaused(_ event: PausedEvent) {
+        NSLog("[ComScoreAnalytics] Stopping due to pause event")
         comscore.stop()
     }
 
     func onPlay(_ event: PlayEvent) {
-        NSLog("Sending Play Video Content")
+        NSLog("[ComScoreAnalytics] Sending Play Video Content")
         comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
+        NSLog("[ComScoreAnalytics] Stopping due to source unloaded event")
         comscore.stop()
     }
 
     func onAdStarted(_ event: AdStartedEvent) {
+        NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
+
         comscore.stop()
         let assetLength = event.duration * 1000
         let adMetadata = ["ns_st_cl": String(assetLength)]
@@ -87,22 +93,22 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             return
         }
 
-        NSLog("Sending Play Video Advertisement")
+        NSLog("[ComScoreAnalytics] Sending Play Video Advertisement")
         comscore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
     }
 
     func onAdFinished(_ event: AdFinishedEvent) {
         comscore.stop()
-        NSLog("Sending Play Video Content")
+        NSLog("[ComScoreAnalytics] Sending Play Video Content")
         comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
     }
 
     func onAdBreakStarted(_ event: AdBreakStartedEvent) {
-        NSLog("On Ad Break Started")
+        NSLog("[ComScoreAnalytics] On Ad Break Started")
 
     }
 
     func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
-        NSLog("On Ad Break Finished")
+        NSLog("[ComScoreAnalytics] On Ad Break Finished")
     }
 }

@@ -85,8 +85,25 @@ class ViewController: UIViewController {
         }
         
         // Create a Comscore Configuration
-        let comScoreMetadata:ComScoreMetadata = ComScoreMetadataBuilder(mediaType: .longFormOnDemand).with(stationTitle: "Hulu").with(publisherBrandName: "ABC").with(programTitle: "Modern Family").with(episodeTitle: "Rash Decisions").with(episodeSeasonNumber: "1").with(episodeNumber: "2").with(completeEpisode: true).with(contentGenre: "Comedy").build()
+        let comScoreMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
        
+        if let bitmovinPlayer = bitmovinPlayer {
+            comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+        }
+        
+        let sourceConfig = SourceConfiguration()
+        sourceConfig.addSourceItem(item: SourceItem(hlsSource: HLSSource(url: streamUrl)))
+        bitmovinPlayer?.load(sourceConfiguration: sourceConfig)
+    }
+    
+    @IBAction func liveButtonClicked(sender: UIButton) {
+        guard let streamUrl = URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8") else {
+            return
+        }
+        
+        // Create a Comscore Configuration
+        let comScoreMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
+        
         if let bitmovinPlayer = bitmovinPlayer {
             comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
         }

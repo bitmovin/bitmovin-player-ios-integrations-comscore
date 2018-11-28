@@ -8,6 +8,9 @@
 import Foundation
 import ComScore
 
+/**
+ ComScoreMediaType associated with the content you have loaded into the BitmovinPlayer
+ */
 public enum ComScoreMediaType: String {
     case longFormOnDemand
     case shortFormOnDemand

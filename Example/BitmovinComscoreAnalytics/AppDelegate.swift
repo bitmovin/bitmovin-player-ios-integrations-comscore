@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let comscoreConfiguration:ComScoreConfiguration = ComScoreConfiguration(publisherId: "6035748", publisherSecret: "6bba25a9ff38cd173c1c93842c768e28", applicationName: "Bitmovin iOS Demo")
+        let comscoreConfiguration:ComScoreConfiguration = ComScoreConfiguration(publisherId: "YOUR_PUBLISHER_ID", publisherSecret: "YOUR_PUBLISHER_SECRET", applicationName: "YOUR_APPLICATION_NAME")
         
         ComScoreAnalytics.addConfiguration(configuration: comscoreConfiguration)
         ComScoreAnalytics.start()

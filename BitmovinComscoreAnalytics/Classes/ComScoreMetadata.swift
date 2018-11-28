@@ -6,8 +6,10 @@
 //
 
 import Foundation
-
-public class ComScoreMetadata {
+/**
+ Metadata object describing the content that is being played back
+ */
+public struct ComScoreMetadata {
     let mediaType: ComScoreMediaType
     let uniqueContentId: String?
     let publisherBrandName: String?
@@ -32,7 +34,12 @@ public class ComScoreMetadata {
     let feedType: String?
 
     //swiftlint:disable identifier_name
-    init(mediaType: ComScoreMediaType, uniqueContentId: String?, publisherBrandName: String?, programTitle: String?, programId: String?, episodeTitle: String?, episodeId: String?, episodeSeasonNumber: String?, episodeNumber: String?, contentGenre: String?, advertisementLoad: Bool, digitalAirdate: String?, tvAirdate: String?, stationTitle: String?, c3: String?, c4: String?, c6: String?, completeEpisode: Bool, feedType: String?) {
+
+    // MARK: - initializer
+    /**
+     Initialize a new ComScoreMetadata object
+     */
+    public init(mediaType: ComScoreMediaType, uniqueContentId: String? = nil, publisherBrandName: String? = nil, programTitle: String? = nil, programId: String? = nil, episodeTitle: String? = nil, episodeId: String? = nil, episodeSeasonNumber: String? = nil, episodeNumber: String? = nil, contentGenre: String? = nil, advertisementLoad: Bool? = nil, digitalAirdate: String? = nil, tvAirdate: String? = nil, stationTitle: String? = nil, c3: String? = nil, c4: String? = nil, c6: String? = nil, completeEpisode: Bool? = nil, feedType: String? = nil) {
         self.mediaType = mediaType
         self.uniqueContentId = uniqueContentId
         self.publisherBrandName = publisherBrandName
@@ -56,7 +63,7 @@ public class ComScoreMetadata {
     //swiftlint:enable identifier_name
 
     //swiftlint:disable cyclomatic_complexity
-    public func dictionary() -> [String: Any] {
+    func dictionary() -> [String: Any] {
         var dictionary: [String: Any] = [:]
 
         if let uniqueContentId = self.uniqueContentId {
