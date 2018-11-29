@@ -29,10 +29,8 @@ public struct ComScoreMetadata {
     let c4: String?
     let c6: String?
     //swiftlint:enable identifier_name
-
     let completeEpisode: Bool?
     let feedType: String?
-
     //swiftlint:disable identifier_name
 
     // MARK: - initializer
