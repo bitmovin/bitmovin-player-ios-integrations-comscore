@@ -4,13 +4,11 @@ def shared_pods
     pod 'SwiftLint'
 end
 
-
-
 target 'BitmovinComScoreAnalytics_Example' do
   use_frameworks!
   platform :ios, '9.0'
   shared_pods
-
+  pod 'GoogleAds-IMA-iOS-SDK', '3.7.0'
 end
 
 #target 'BitmovinComScoreAnalytics_Tests' do

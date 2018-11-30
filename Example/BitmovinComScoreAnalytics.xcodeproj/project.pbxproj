@@ -18,7 +18,6 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		BAA28EA2A62A215393E34CD4 /* Pods_BitmovinComScoreAnalytics_tvOSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D70B72AB1F3ADE4DA7E362ED /* Pods_BitmovinComScoreAnalytics_tvOSExample.framework */; };
 		D77479ADA00C128E483B1281 /* Pods_BitmovinComscoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42FEAD4E241E72DF3E64D46 /* Pods_BitmovinComscoreAnalytics_Example.framework */; };
 		F0F0ED15B232D31E35E9FC5C /* Pods_BitmovinComScoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7779C5FC91FE9F78D8232AC2 /* Pods_BitmovinComScoreAnalytics_Example.framework */; };
 /* End PBXBuildFile section */
@@ -44,8 +43,6 @@
 		01E75D5C21AD065A0073856C /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		12C09A3B7FEB2C15DEFBD3D4 /* BitmovinComscoreAnalytics.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BitmovinComscoreAnalytics.podspec; path = ../BitmovinComscoreAnalytics.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2074CC3026317FF977734830 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		2C945C2AD4DF9E27F3F8CE9A /* Pods-BitmovinComScoreAnalytics_tvOSExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComScoreAnalytics_tvOSExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_tvOSExample/Pods-BitmovinComScoreAnalytics_tvOSExample.debug.xcconfig"; sourceTree = "<group>"; };
-		453AE73DB0AD9EADF8F58C7F /* Pods-BitmovinComScoreAnalytics_tvOSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComScoreAnalytics_tvOSExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_tvOSExample/Pods-BitmovinComScoreAnalytics_tvOSExample.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* BitmovinComScoreAnalytics_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitmovinComScoreAnalytics_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAA28EA2A62A215393E34CD4 /* Pods_BitmovinComScoreAnalytics_tvOSExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,8 +194,6 @@
 				706D1C8C95C78FC63E01E13B /* Pods-BitmovinComscoreAnalytics_Example.release.xcconfig */,
 				68EEDB31C0CF4CB43816727D /* Pods-BitmovinComScoreAnalytics_Example.debug.xcconfig */,
 				00FDB58D6B9BAE243E0FB69E /* Pods-BitmovinComScoreAnalytics_Example.release.xcconfig */,
-				2C945C2AD4DF9E27F3F8CE9A /* Pods-BitmovinComScoreAnalytics_tvOSExample.debug.xcconfig */,
-				453AE73DB0AD9EADF8F58C7F /* Pods-BitmovinComScoreAnalytics_tvOSExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -211,11 +205,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01D2B2E221B0F676008D54AA /* Build configuration list for PBXNativeTarget "BitmovinComScoreAnalytics_tvOSExample" */;
 			buildPhases = (
-				C1301FF0CF07BDD48AC4096E /* [CP] Check Pods Manifest.lock */,
 				01D2B2D021B0F672008D54AA /* Sources */,
 				01D2B2D121B0F672008D54AA /* Frameworks */,
 				01D2B2D221B0F672008D54AA /* Resources */,
-				372DA27325B116211C263AC2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -368,7 +360,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-iOS/SCORBundle.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore/SCORBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -379,28 +371,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		372DA27325B116211C263AC2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_tvOSExample/Pods-BitmovinComScoreAnalytics_tvOSExample-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-tvOS/SCORBundle.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SCORBundle.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_tvOSExample/Pods-BitmovinComScoreAnalytics_tvOSExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B89F2BDC862E81A1C27F132 /* [CP] Check Pods Manifest.lock */ = {
@@ -434,6 +404,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics/BitmovinComScoreAnalytics.framework",
 				"${PODS_ROOT}/BitmovinPlayer/iOS/BitmovinPlayer.framework",
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/iOS/ComScore.framework",
 				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds/GoogleInteractiveMediaAds.framework",
@@ -442,6 +413,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinComScoreAnalytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ComScore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
@@ -449,28 +421,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C1301FF0CF07BDD48AC4096E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BitmovinComScoreAnalytics_tvOSExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -542,7 +492,6 @@
 /* Begin XCBuildConfiguration section */
 		01D2B2E021B0F676008D54AA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C945C2AD4DF9E27F3F8CE9A /* Pods-BitmovinComScoreAnalytics_tvOSExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -572,7 +521,6 @@
 		};
 		01D2B2E121B0F676008D54AA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 453AE73DB0AD9EADF8F58C7F /* Pods-BitmovinComScoreAnalytics_tvOSExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
