@@ -9,12 +9,21 @@ import Foundation
 import ComScore
 import BitmovinPlayer
 
+enum ComScoreState {
+    case video
+    case advertisement
+    case stopped
+}
+
 class ComScoreBitmovinAdapter: NSObject {
     let comscore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
     let player: BitmovinPlayer
     var comScoreAdType: SCORAdType?
     var comScoreContentType: SCORContentType
     var internalDictionary: [String: Any] = [:]
+    var state: ComScoreState = .stopped
+    private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
+
     var dictionary: [String: Any] {
         get {
             let length = assetLength()
@@ -51,64 +60,90 @@ class ComScoreBitmovinAdapter: NSObject {
 extension ComScoreBitmovinAdapter: PlayerListener {
     func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
         NSLog("[ComScoreAnalytics] Stopping due to playback finished event")
-        comscore.stop()
+        stop()
     }
 
     func onPaused(_ event: PausedEvent) {
-        NSLog("[ComScoreAnalytics] Stopping due to pause event")
-        comscore.stop()
+        stop()
     }
 
     func onPlay(_ event: PlayEvent) {
-        NSLog("[ComScoreAnalytics] Sending Play Video Content")
-        comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
+        playVideoContentPart()
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
-        NSLog("[ComScoreAnalytics] Stopping due to source unloaded event")
-        comscore.stop()
+        stop()
     }
 
     func onAdStarted(_ event: AdStartedEvent) {
-        NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
-
-        comscore.stop()
-        let assetLength = event.duration * 1000
-        let adMetadata = ["ns_st_cl": String(assetLength)]
-
-        //This is wrong, but we dont have AdBreak time information
-        if player.isLive {
-            comScoreAdType = .linearLive
-        } else {
-            if event.timeOffset == 0 {
-                comScoreAdType = .linearOnDemandPreRoll
-            } else if event.timeOffset + event.duration == player.duration {
-                comScoreAdType = .linearOnDemandPostRoll
-            } else {
-                comScoreAdType = .linearOnDemandMidRoll
-            }
-        }
-
-        guard let comScoreAdType = comScoreAdType else {
-            return
-        }
-
-        NSLog("[ComScoreAnalytics] Sending Play Video Advertisement")
-        comscore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
+        playAdContentPart(duration: event.duration, timeOffset: event.timeOffset)
     }
 
     func onAdFinished(_ event: AdFinishedEvent) {
-        comscore.stop()
-        NSLog("[ComScoreAnalytics] Sending Play Video Content")
-        comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
+        playVideoContentPart()
     }
 
     func onAdBreakStarted(_ event: AdBreakStartedEvent) {
         NSLog("[ComScoreAnalytics] On Ad Break Started")
-
     }
 
     func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
         NSLog("[ComScoreAnalytics] On Ad Break Finished")
+    }
+
+    func stop() {
+        self.accessQueue.sync {
+            if state != .stopped {
+                state = .stopped
+                comscore.stop()
+            }
+        }
+    }
+
+    func playVideoContentPart() {
+        if state != .stopped {
+            NSLog("[ComScoreAnalytics] Stopping due to Video starting")
+            state = .stopped
+            stop()
+        }
+
+        if state != .video {
+            state = .video
+            NSLog("[ComScoreAnalytics] Sending Play Video Content")
+            comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
+        }
+    }
+
+    func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
+        if state != .stopped {
+            NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
+            state = .stopped
+            stop()
+        }
+
+        if state != .advertisement {
+            state = .advertisement
+            let assetLength = duration * 1000
+            let adMetadata = ["ns_st_cl": String(assetLength)]
+
+            //This is wrong, but we dont have AdBreak time information
+            if player.isLive {
+                comScoreAdType = .linearLive
+            } else {
+                if timeOffset == 0 {
+                    comScoreAdType = .linearOnDemandPreRoll
+                } else if timeOffset + duration == player.duration {
+                    comScoreAdType = .linearOnDemandPostRoll
+                } else {
+                    comScoreAdType = .linearOnDemandMidRoll
+                }
+            }
+
+            guard let comScoreAdType = comScoreAdType else {
+                return
+            }
+            NSLog("[ComScoreAnalytics] Sending Play Ad")
+            comscore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
+        }
     }
 }
