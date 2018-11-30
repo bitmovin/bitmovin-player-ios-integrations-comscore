@@ -18,7 +18,6 @@ enum ComScoreState {
 class ComScoreBitmovinAdapter: NSObject {
     let comscore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
     let player: BitmovinPlayer
-    var comScoreAdType: SCORAdType?
     var comScoreContentType: SCORContentType
     var internalDictionary: [String: Any] = [:]
     var state: ComScoreState = .stopped
@@ -121,6 +120,8 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                 let assetLength = duration * 1000
                 let adMetadata = ["ns_st_cl": String(assetLength)]
 
+                var comScoreAdType: SCORAdType = .other
+
                 //This is wrong, but we dont have AdBreak time information
                 if player.isLive {
                     comScoreAdType = .linearLive
@@ -134,9 +135,6 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                     }
                 }
 
-                guard let comScoreAdType = comScoreAdType else {
-                    return
-                }
                 NSLog("[ComScoreAnalytics] Sending Play Ad")
                 comscore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
             }
