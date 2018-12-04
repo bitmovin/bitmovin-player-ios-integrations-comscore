@@ -16,11 +16,11 @@ enum ComScoreState {
 }
 
 class ComScoreBitmovinAdapter: NSObject {
-    let comscore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
-    let player: BitmovinPlayer
-    var comScoreContentType: SCORContentType
-    var internalDictionary: [String: Any] = [:]
-    var state: ComScoreState = .stopped
+    private let comscore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
+    private let player: BitmovinPlayer
+    private var comScoreContentType: SCORContentType
+    private var internalDictionary: [String: Any] = [:]
+    private var state: ComScoreState = .stopped
     private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
 
     var dictionary: [String: Any] {
@@ -90,7 +90,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         NSLog("[ComScoreAnalytics] On Ad Break Finished")
     }
 
-    func stop() {
+    private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
                 state = .stopped
@@ -99,7 +99,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         }
     }
 
-    func playVideoContentPart() {
+    private func playVideoContentPart() {
         self.accessQueue.sync {
             if state != .video {
                 state = .video
@@ -111,7 +111,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         }
     }
 
-    func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
+    private func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
         self.accessQueue.sync {
             if state != .advertisement {
                 NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")

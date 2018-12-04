@@ -103,11 +103,6 @@ class ViewController: UIViewController {
         return URL(string: String(format: "%@%d", adTag, Int(arc4random_uniform(100000))))!
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func unloadButtonClicked(sender: UIButton) {
         self.bitmovinPlayer?.unload()
     }

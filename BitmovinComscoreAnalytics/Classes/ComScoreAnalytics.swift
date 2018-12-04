@@ -16,7 +16,7 @@ public final class ComScoreAnalytics {
      - configuration: The ComScoreConfiguration that contains your application specific information
      */
     public static func addConfiguration(configuration: ComScoreConfiguration) {
-        let builder = SCORPublisherConfigurationBuilder.init()
+        let builder = SCORPublisherConfigurationBuilder()
         builder.publisherId = configuration.publisherId
         builder.publisherSecret = configuration.publisherSecret
         builder.applicationName = configuration.applicationName

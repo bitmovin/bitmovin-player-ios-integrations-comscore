@@ -17,7 +17,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		D77479ADA00C128E483B1281 /* Pods_BitmovinComscoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42FEAD4E241E72DF3E64D46 /* Pods_BitmovinComscoreAnalytics_Example.framework */; };
 		F0F0ED15B232D31E35E9FC5C /* Pods_BitmovinComScoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7779C5FC91FE9F78D8232AC2 /* Pods_BitmovinComScoreAnalytics_Example.framework */; };
 /* End PBXBuildFile section */
@@ -51,8 +50,6 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* BitmovinComScoreAnalytics_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitmovinComScoreAnalytics_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		68EEDB31C0CF4CB43816727D /* Pods-BitmovinComScoreAnalytics_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComScoreAnalytics_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		706D1C8C95C78FC63E01E13B /* Pods-BitmovinComscoreAnalytics_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComscoreAnalytics_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComscoreAnalytics_Example/Pods-BitmovinComscoreAnalytics_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7779C5FC91FE9F78D8232AC2 /* Pods_BitmovinComScoreAnalytics_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitmovinComScoreAnalytics_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +105,6 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for BitmovinComscoreAnalytics */,
-				607FACE81AFB9204008FA782 /* Tests */,
 				01D2B2D521B0F672008D54AA /* BitmovinComScoreAnalytics_tvOSExample */,
 				607FACD11AFB9204008FA782 /* Products */,
 				CF045F417E9D83B50266BD55 /* Pods */,
@@ -144,23 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACD41AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -448,7 +427,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
