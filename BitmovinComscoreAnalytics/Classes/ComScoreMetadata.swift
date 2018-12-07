@@ -37,7 +37,25 @@ public struct ComScoreMetadata {
     /**
      Initialize a new ComScoreMetadata object
      */
-    public init(mediaType: ComScoreMediaType, uniqueContentId: String? = nil, publisherBrandName: String? = nil, programTitle: String? = nil, programId: String? = nil, episodeTitle: String? = nil, episodeId: String? = nil, episodeSeasonNumber: String? = nil, episodeNumber: String? = nil, contentGenre: String? = nil, advertisementLoad: Bool? = nil, digitalAirdate: String? = nil, tvAirdate: String? = nil, stationTitle: String? = nil, c3: String? = nil, c4: String? = nil, c6: String? = nil, completeEpisode: Bool? = nil, feedType: String? = nil) {
+    public init(mediaType: ComScoreMediaType,
+                uniqueContentId: String? = nil,
+                publisherBrandName: String? = nil,
+                programTitle: String? = nil,
+                programId: String? = nil,
+                episodeTitle: String? = nil,
+                episodeId: String? = nil,
+                episodeSeasonNumber: String? = nil,
+                episodeNumber: String? = nil,
+                contentGenre: String? = nil,
+                advertisementLoad: Bool? = nil,
+                digitalAirdate: String? = nil,
+                tvAirdate: String? = nil,
+                stationTitle: String? = nil,
+                c3: String? = nil,
+                c4: String? = nil,
+                c6: String? = nil,
+                completeEpisode: Bool? = nil,
+                feedType: String? = nil) {
         self.mediaType = mediaType
         self.uniqueContentId = uniqueContentId
         self.publisherBrandName = publisherBrandName
@@ -61,7 +79,7 @@ public struct ComScoreMetadata {
     //swiftlint:enable identifier_name
 
     //swiftlint:disable cyclomatic_complexity
-    func dictionary() -> [String: Any] {
+    func buildComscoreMetadataDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [:]
 
         if let uniqueContentId = self.uniqueContentId {
@@ -100,10 +118,8 @@ public struct ComScoreMetadata {
             dictionary["ns_st_ge"] = contentGenre
         }
 
-        if let advertisementLoad = self.advertisementLoad {
-            if advertisementLoad {
-                dictionary["ns_st_ia"] = "1"
-            }
+        if advertisementLoad ?? false {
+            dictionary["ns_st_ia"] = "1"
         }
 
         if let digitalAirdate = self.digitalAirdate {
@@ -132,10 +148,8 @@ public struct ComScoreMetadata {
         }
         //swiftlint:enable identifier_name
 
-        if let completeEpisode = self.completeEpisode {
-            if completeEpisode {
-                dictionary["ns_st_ce"] = "1"
-            }
+        if completeEpisode ?? false {
+            dictionary["ns_st_ce"] = "1"
         }
 
         if let feedType = self.feedType {

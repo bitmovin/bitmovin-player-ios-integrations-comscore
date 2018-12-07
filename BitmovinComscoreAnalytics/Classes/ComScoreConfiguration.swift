@@ -14,7 +14,7 @@ public class ComScoreConfiguration {
 
     // MARK: - initializer
     /**
-     Initialize a new ComSoreConfiguration with your application specific information
+     Initializes a new ComSoreConfiguration with application specific information
      
      - Parameters:
      - publisherId: Publisher ID assigned by ComScore

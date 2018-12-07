@@ -13,7 +13,7 @@ public class ComScoreStreamingAnalytics {
 
     // MARK: - initializer
     /**
-     Initialize a new Bitmovin ComScore Streaming Analytics object
+     Initializes a new Bitmovin ComScore Streaming Analytics object
      
      - Parameters:
      - player: BitmovinPlayer instance to track

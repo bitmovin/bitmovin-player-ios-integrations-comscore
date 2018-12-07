@@ -39,11 +39,11 @@ class ComScoreBitmovinAdapter: NSObject {
         self.comScoreContentType = metadata.mediaType.toComscore()
         super.init()
         self.player.add(listener: self)
-        self.dictionary = metadata.dictionary()
+        self.dictionary = metadata.buildComscoreMetadataDictionary()
     }
 
     func update(metadata: ComScoreMetadata) {
-        self.dictionary = metadata.dictionary()
+        self.dictionary = metadata.buildComscoreMetadataDictionary()
         self.comScoreContentType = metadata.mediaType.toComscore()
     }
 

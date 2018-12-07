@@ -87,7 +87,6 @@ class ViewController: UIViewController {
                 bitmovinPlayerView?.player = bitmovinPlayer
             }
             
-            
         } catch {
             print("Configuration error: \(error)")
         }
@@ -145,6 +144,5 @@ class ViewController: UIViewController {
         sourceConfig.addSourceItem(item: SourceItem(hlsSource: HLSSource(url: streamUrl)))
         bitmovinPlayer?.load(sourceConfiguration: sourceConfig)
     }
-
 }
 
