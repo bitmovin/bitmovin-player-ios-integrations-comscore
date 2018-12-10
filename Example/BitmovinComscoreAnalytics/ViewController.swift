@@ -68,7 +68,6 @@ class ViewController: UIViewController {
                 comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
             }
             
-            
             if bitmovinPlayerView == nil {
                 // Create player view and pass the player instance to it
                 bitmovinPlayerView = BMPBitmovinPlayerView(player: player, frame: .zero)
