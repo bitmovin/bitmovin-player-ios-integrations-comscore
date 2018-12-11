@@ -36,7 +36,7 @@ class ComScoreBitmovinAdapter: NSObject {
 
     init(player: BitmovinPlayer, metadata: ComScoreMetadata) {
         self.player = player
-        self.comScoreContentType = metadata.mediaType.toComscore()
+        self.comScoreContentType = metadata.mediaType.toComScore()
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComscoreMetadataDictionary()
@@ -44,7 +44,7 @@ class ComScoreBitmovinAdapter: NSObject {
 
     func update(metadata: ComScoreMetadata) {
         self.dictionary = metadata.buildComscoreMetadataDictionary()
-        self.comScoreContentType = metadata.mediaType.toComscore()
+        self.comScoreContentType = metadata.mediaType.toComScore()
     }
 
     func assetLength() -> TimeInterval {

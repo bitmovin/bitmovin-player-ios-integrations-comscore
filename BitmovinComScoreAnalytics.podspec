@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
-  s.ios.dependency 'BitmovinPlayer', '~> 2.14.0'
-  s.tvos.dependency 'BitmovinPlayer', '~> 2.14.0'
+  s.ios.dependency 'BitmovinPlayer', '~> 2.15.0'
+  s.tvos.dependency 'BitmovinPlayer', '~> 2.15.0'
   s.ios.dependency 'ComScore'
   s.tvos.dependency 'ComScore'
   s.source_files = 'BitmovinComscoreAnalytics/Classes/**/*'  
