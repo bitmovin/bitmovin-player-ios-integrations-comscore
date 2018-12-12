@@ -122,7 +122,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
 
                 var comScoreAdType: SCORAdType = .other
 
-                //This is wrong, but we dont have AdBreak time information
+                //TODO, fix bug where we dont categorize multiple pre-rolls properly 
                 if player.isLive {
                     comScoreAdType = .linearLive
                 } else {
