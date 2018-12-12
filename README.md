@@ -41,8 +41,12 @@ Then create a ComScoreStreamingAnalytics using your current  `BitmovinPlayer`
 // Create a Comscore Configuration
 let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand, publisherBrandName: "ABC", programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
 
+do {
+    try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+} catch {
+    print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
+}
 
-comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
 ```
 
 When changing assets, make sure to call `update(metadata:)` before loading a new asset 

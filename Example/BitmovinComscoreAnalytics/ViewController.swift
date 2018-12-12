@@ -65,7 +65,11 @@ class ViewController: UIViewController {
             
             // Create a ComScore Streaming Analytics
             if let bitmovinPlayer = bitmovinPlayer {
-                comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                do {
+                    try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                } catch {
+                    print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
+                }
             }
             
             if bitmovinPlayerView == nil {
@@ -119,7 +123,11 @@ class ViewController: UIViewController {
         let comScoreMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
        
         if let bitmovinPlayer = bitmovinPlayer {
-            comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+            do {
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+            } catch {
+                print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
+            }
         }
         
         let sourceConfig = SourceConfiguration()
@@ -136,7 +144,11 @@ class ViewController: UIViewController {
         let comScoreMetadata:ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,publisherBrandName: "ABC",programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu",completeEpisode: true)
         
         if let bitmovinPlayer = bitmovinPlayer {
-            comScoreStreamingAnalytics = ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+            do {
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+            } catch {
+                print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
+            }
         }
         
         let sourceConfig = SourceConfiguration()

@@ -25,4 +25,16 @@ public final class ComScoreAnalytics {
             }
         }
     }
+
+    public static func createComScoreStreamingAnalytics(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) throws -> ComScoreStreamingAnalytics? {
+        if started {
+            return ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: metadata)
+        } else {
+            throw ComScoreError.notStarted
+        }
+    }
+}
+
+public enum ComScoreError: Error {
+    case notStarted
 }
