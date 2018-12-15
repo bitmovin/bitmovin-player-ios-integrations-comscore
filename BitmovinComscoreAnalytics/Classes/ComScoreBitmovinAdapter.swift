@@ -22,6 +22,8 @@ class ComScoreBitmovinAdapter: NSObject {
     private var internalDictionary: [String: Any] = [:]
     private var state: ComScoreState = .stopped
     private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
+    private var currentAdDuration: TimeInterval = 0
+    private var currentAdOffset: TimeInterval = 0
 
     var dictionary: [String: Any] {
         get {
@@ -67,7 +69,11 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     func onPlay(_ event: PlayEvent) {
-        playVideoContentPart()
+        if player.isAd {
+            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
+        } else {
+            playVideoContentPart()
+        }
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
@@ -75,7 +81,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     func onAdStarted(_ event: AdStartedEvent) {
-        playAdContentPart(duration: event.duration, timeOffset: event.timeOffset)
+        currentAdDuration = event.duration
+        currentAdOffset = event.timeOffset
+        playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
     }
 
     func onAdFinished(_ event: AdFinishedEvent) {

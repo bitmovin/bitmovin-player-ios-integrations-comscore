@@ -7,6 +7,7 @@ opt_in_rules:
 
 included:
 - ../BitmovinComscoreAnalytics/
+- BitmovinComscoreAnalytics/
 
 excluded:
 - Carthage
