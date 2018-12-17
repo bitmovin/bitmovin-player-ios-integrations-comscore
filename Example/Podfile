@@ -1,0 +1,12 @@
+def shared_pods
+    pod 'BitmovinComScoreAnalytics', path: '../'
+    pod 'BitmovinPlayer', git: 'https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git', tag: '2.15.0'
+    pod 'SwiftLint'
+end
+
+target 'BitmovinComScoreAnalytics_Example' do
+  use_frameworks!
+  platform :ios, '9.0'
+  shared_pods
+  pod 'GoogleAds-IMA-iOS-SDK', '3.7.0'
+end
