@@ -16,7 +16,7 @@ enum ComScoreState {
 }
 
 class ComScoreBitmovinAdapter: NSObject {
-    private let comscore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
+    private let comScore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
     private let player: BitmovinPlayer
     private var comScoreContentType: SCORContentType
     private var internalDictionary: [String: Any] = [:]
@@ -41,11 +41,11 @@ class ComScoreBitmovinAdapter: NSObject {
         self.comScoreContentType = metadata.mediaType.toComScore()
         super.init()
         self.player.add(listener: self)
-        self.dictionary = metadata.buildComscoreMetadataDictionary()
+        self.dictionary = metadata.buildComScoreMetadataDictionary()
     }
 
     func update(metadata: ComScoreMetadata) {
-        self.dictionary = metadata.buildComscoreMetadataDictionary()
+        self.dictionary = metadata.buildComScoreMetadataDictionary()
         self.comScoreContentType = metadata.mediaType.toComScore()
     }
 
@@ -102,7 +102,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         self.accessQueue.sync {
             if state != .stopped {
                 state = .stopped
-                comscore.stop()
+                comScore.stop()
             }
         }
     }
@@ -112,9 +112,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             if state != .video {
                 state = .video
                 NSLog("[ComScoreAnalytics] Stopping due to Video starting")
-                comscore.stop()
+                comScore.stop()
                 NSLog("[ComScoreAnalytics] Sending Play Video Content")
-                comscore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
+                comScore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
             }
         }
     }
@@ -123,7 +123,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         self.accessQueue.sync {
             if state != .advertisement {
                 NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
-                comscore.stop()
+                comScore.stop()
                 state = .advertisement
                 let assetLength = duration * 1000
                 let adMetadata = ["ns_st_cl": String(assetLength)]
@@ -144,7 +144,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                 }
 
                 NSLog("[ComScoreAnalytics] Sending Play Ad")
-                comscore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
+                comScore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
             }
         }
     }

@@ -79,7 +79,7 @@ public struct ComScoreMetadata {
     //swiftlint:enable identifier_name
 
     //swiftlint:disable cyclomatic_complexity
-    func buildComscoreMetadataDictionary() -> [String: Any] {
+    func buildComScoreMetadataDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [:]
 
         if let uniqueContentId = self.uniqueContentId {
