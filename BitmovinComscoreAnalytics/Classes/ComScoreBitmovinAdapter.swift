@@ -65,13 +65,15 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     func onPaused(_ event: PausedEvent) {
-        stop()
+        // ComScore only wants us to call stop if we are NOT in an ad break
+        if !player.isAd {
+            stop()
+        }
     }
 
     func onPlay(_ event: PlayEvent) {
-        if player.isAd {
-            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
-        } else {
+        // ComScore only wants us to resume into video content. We should not transition state when pause / play is called in an ad
+        if !player.isAd {
             playVideoContentPart()
         }
     }
@@ -120,13 +122,18 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     private func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
+        // This occurs on session start when Play is fired before AdStarted. Just return here as we will enter the ad once the AdStarted event is fired
+        if duration == 0 {
+            return
+        }
+
         self.accessQueue.sync {
             if state != .advertisement {
                 NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
                 comScore.stop()
                 state = .advertisement
-                let assetLength = duration * 1000
-                let adMetadata = ["ns_st_cl": String(assetLength)]
+                let assetLength: Int = Int(duration * 1000)
+                let adMetadata = ["ns_st_cl": "\(assetLength)"]
 
                 var comScoreAdType: SCORAdType = .other
 
