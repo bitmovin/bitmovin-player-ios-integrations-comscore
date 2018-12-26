@@ -42,6 +42,13 @@ class ComScoreBitmovinAdapter: NSObject {
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     func update(metadata: ComScoreMetadata) {
@@ -55,6 +62,14 @@ class ComScoreBitmovinAdapter: NSObject {
             assetLength = 0
         }
         return assetLength
+    }
+
+    @objc func applicationWillResignActive() {
+        stop()
+    }
+
+    @objc func applicationWillBecomeActive() {
+        resume()
     }
 }
 
@@ -73,9 +88,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
 
     func onPlay(_ event: PlayEvent) {
         // ComScore only wants us to resume into video content. We should not transition state when pause / play is called in an ad
-        if !player.isAd {
-            playVideoContentPart()
-        }
+        resume()
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
@@ -99,10 +112,19 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
         NSLog("[ComScoreAnalytics] On Ad Break Finished")
     }
+    
+    private func resume(){
+        if player.isAd {
+            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
+        }else {
+            playVideoContentPart()
+        }
+    }
 
     private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
+                NSLog("[ComScoreAnalytics] Stopping")
                 state = .stopped
                 comScore.stop()
             }
@@ -112,9 +134,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     private func playVideoContentPart() {
         self.accessQueue.sync {
             if state != .video {
-                state = .video
                 NSLog("[ComScoreAnalytics] Stopping due to Video starting")
-                comScore.stop()
+                stop()
+                state = .video
                 NSLog("[ComScoreAnalytics] Sending Play Video Content")
                 comScore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
             }
@@ -130,7 +152,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         self.accessQueue.sync {
             if state != .advertisement {
                 NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
-                comScore.stop()
+                stop()
                 state = .advertisement
                 let assetLength: Int = Int(duration * 1000)
                 let adMetadata = ["ns_st_cl": "\(assetLength)"]
