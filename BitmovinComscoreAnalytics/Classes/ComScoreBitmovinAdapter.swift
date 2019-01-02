@@ -116,7 +116,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     private func resume(){
         if player.isAd {
             playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
-        }else {
+        } else {
             playVideoContentPart()
         }
     }
