@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
   Comscore Analytics Integration for the Bitmovin Player iOS SDK
                        DESC
 
+  s.swift_version    = '4.0'
   s.homepage         = 'https://github.com/Cory Zachman/BitmovinComScoreAnalytics'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Cory Zachman' => 'cory.zachman@bitmovin.com' }
