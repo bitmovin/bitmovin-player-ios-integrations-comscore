@@ -82,7 +82,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     func onPaused(_ event: PausedEvent) {
         
         //TODO: remove once we have tvOS support for this method
-        #if(iOS)
+        #if os(iOS)
         // ComScore only wants us to call stop if we are NOT in an ad break
         if !player.isAd {
             stop()
@@ -119,7 +119,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     
     private func resume(){
         //TODO remove once we have iOS support
-        #if(iOS)
+        #if os(iOS)
         if player.isAd {
             playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
         }else {
