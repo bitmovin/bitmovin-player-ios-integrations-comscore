@@ -21,11 +21,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWP-X5-gep">
+                                <rect key="frame" x="90" y="60" width="1740" height="960"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wWP-X5-gep" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" id="1bN-x8-fh6"/>
+                            <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="wWP-X5-gep" secondAttribute="trailing" id="OWh-wd-msb"/>
+                            <constraint firstItem="wu6-TO-1qx" firstAttribute="bottom" secondItem="wWP-X5-gep" secondAttribute="bottom" id="YDc-ss-FC4"/>
+                            <constraint firstItem="wWP-X5-gep" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" id="z34-5S-GSb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
                     </view>
                     <connections>
-                        <outlet property="playerView" destination="8bC-Xf-vdC" id="V0E-w7-i7x"/>
+                        <outlet property="playerView" destination="wWP-X5-gep" id="JPq-ht-f3P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
