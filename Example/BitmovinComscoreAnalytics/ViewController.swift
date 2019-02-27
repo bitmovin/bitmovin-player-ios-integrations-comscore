@@ -61,12 +61,21 @@ class ViewController: UIViewController {
             self.bitmovinPlayer = player
 
             // Create a Comscore Configuration
-            let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand, publisherBrandName: "ABC", programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu", completeEpisode: true)
+            let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,
+                                                                      publisherBrandName: "ABC",
+                                                                      programTitle: "Modern Family",
+                                                                      episodeTitle: "Rash Decisions",
+                                                                      episodeSeasonNumber: "1",
+                                                                      episodeNumber: "2",
+                                                                      contentGenre: "Comedy",
+                                                                      stationTitle: "Hulu",
+                                                                      completeEpisode: true)
 
             // Create a ComScore Streaming Analytics
             if let bitmovinPlayer = bitmovinPlayer {
                 do {
-                    try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                    try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer,
+                                                                                                        metadata: comScoreMetadata)
                 } catch {
                     print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
                 }
@@ -120,11 +129,20 @@ class ViewController: UIViewController {
         }
 
         // Create a Comscore Configuration
-        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand, publisherBrandName: "ABC", programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu", completeEpisode: true)
+        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,
+                                                                  publisherBrandName: "ABC",
+                                                                  programTitle: "Modern Family",
+                                                                  episodeTitle: "Rash Decisions",
+                                                                  episodeSeasonNumber: "1",
+                                                                  episodeNumber: "2",
+                                                                  contentGenre: "Comedy",
+                                                                  stationTitle: "Hulu",
+                                                                  completeEpisode: true)
 
         if let bitmovinPlayer = bitmovinPlayer {
             do {
-                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer,
+                                                                                                    metadata: comScoreMetadata)
             } catch {
                 print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
             }
@@ -141,11 +159,20 @@ class ViewController: UIViewController {
         }
 
         // Create a Comscore Configuration
-        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand, publisherBrandName: "ABC", programTitle: "Modern Family", episodeTitle: "Rash Decisions", episodeSeasonNumber: "1", episodeNumber: "2", contentGenre: "Comedy", stationTitle: "Hulu", completeEpisode: true)
+        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,
+                                                                  publisherBrandName: "ABC",
+                                                                  programTitle: "Modern Family",
+                                                                  episodeTitle: "Rash Decisions",
+                                                                  episodeSeasonNumber: "1",
+                                                                  episodeNumber: "2",
+                                                                  contentGenre: "Comedy",
+                                                                  stationTitle: "Hulu",
+                                                                  completeEpisode: true)
 
         if let bitmovinPlayer = bitmovinPlayer {
             do {
-                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer,
+                                                                                                    metadata: comScoreMetadata)
             } catch {
                 print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
             }

@@ -42,6 +42,23 @@ class ComScoreBitmovinAdapter: NSObject {
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillResignActive),
+                                               name: UIApplication.willResignActiveNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillBecomeActive),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willResignActiveNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
     }
 
     func update(metadata: ComScoreMetadata) {
@@ -56,6 +73,14 @@ class ComScoreBitmovinAdapter: NSObject {
         }
         return assetLength
     }
+
+    @objc func applicationWillResignActive() {
+        stop()
+    }
+
+    @objc func applicationWillBecomeActive() {
+        resume()
+    }
 }
 
 extension ComScoreBitmovinAdapter: PlayerListener {
@@ -65,15 +90,19 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     func onPaused(_ event: PausedEvent) {
-        stop()
+
+        //TODO: remove once we have tvOS support for this method
+        #if os(iOS)
+        // ComScore only wants us to call stop if we are NOT in an ad break
+        if !player.isAd {
+            stop()
+        }
+        #endif
     }
 
     func onPlay(_ event: PlayEvent) {
-        if player.isAd {
-            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
-        } else {
-            playVideoContentPart()
-        }
+        // ComScore only wants us to resume into video content. We should not transition state when pause / play is called in an ad
+        resume()
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
@@ -98,9 +127,21 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         NSLog("[ComScoreAnalytics] On Ad Break Finished")
     }
 
+    private func resume() {
+        //TODO remove once we have iOS support
+        #if os(iOS)
+        if player.isAd {
+            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
+        } else {
+            playVideoContentPart()
+        }
+        #endif
+    }
+
     private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
+                NSLog("[ComScoreAnalytics] Stopping")
                 state = .stopped
                 comScore.stop()
             }
@@ -110,9 +151,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     private func playVideoContentPart() {
         self.accessQueue.sync {
             if state != .video {
-                state = .video
                 NSLog("[ComScoreAnalytics] Stopping due to Video starting")
-                comScore.stop()
+                stop()
+                state = .video
                 NSLog("[ComScoreAnalytics] Sending Play Video Content")
                 comScore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
             }
@@ -120,13 +161,18 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     private func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
+        // This occurs on session start when Play is fired before AdStarted. Just return here as we will enter the ad once the AdStarted event is fired
+        if duration == 0 {
+            return
+        }
+
         self.accessQueue.sync {
             if state != .advertisement {
                 NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
-                comScore.stop()
+                stop()
                 state = .advertisement
-                let assetLength = duration * 1000
-                let adMetadata = ["ns_st_cl": String(assetLength)]
+                let assetLength: Int = Int(duration * 1000)
+                let adMetadata = ["ns_st_cl": "\(assetLength)"]
 
                 var comScoreAdType: SCORAdType = .other
 
