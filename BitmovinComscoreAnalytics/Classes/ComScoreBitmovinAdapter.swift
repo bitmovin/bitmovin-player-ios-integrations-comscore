@@ -42,13 +42,23 @@ class ComScoreBitmovinAdapter: NSObject {
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillResignActive),
+                                               name: UIApplication.willResignActiveNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillBecomeActive),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
-    
+
     deinit {
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willResignActiveNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
     }
 
     func update(metadata: ComScoreMetadata) {
@@ -80,10 +90,14 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
 
     func onPaused(_ event: PausedEvent) {
+
+        //TODO: remove once we have tvOS support for this method
+        #if os(iOS)
         // ComScore only wants us to call stop if we are NOT in an ad break
         if !player.isAd {
             stop()
         }
+        #endif
     }
 
     func onPlay(_ event: PlayEvent) {
@@ -112,13 +126,16 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
         NSLog("[ComScoreAnalytics] On Ad Break Finished")
     }
-    
-    private func resume(){
+
+    private func resume() {
+        //TODO remove once we have iOS support
+        #if os(iOS)
         if player.isAd {
             playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
         } else {
             playVideoContentPart()
         }
+        #endif
     }
 
     private func stop() {
