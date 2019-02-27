@@ -6,7 +6,7 @@
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'BitmovinComScoreAnalytics', git: 'https://github.com/bitmovin/bitmovin-player-ios-integrations-comscore.git', tag: '0.9.0'
+pod 'BitmovinComScoreAnalytics', git: 'https://github.com/bitmovin/bitmovin-player-ios-integrations-comscore.git', tag: '0.9.1'
 ```
 
 Then, in your command line run:
