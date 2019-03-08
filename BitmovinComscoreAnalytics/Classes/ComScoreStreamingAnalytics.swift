@@ -23,6 +23,10 @@ public class ComScoreStreamingAnalytics {
         self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, metadata: metadata)
     }
 
+    deinit {
+        self.comScoreAdapter.destroy()
+    }
+
     /**
      Destroys the ComScoreStreaming analytics object and unregisters it from the player
     */
