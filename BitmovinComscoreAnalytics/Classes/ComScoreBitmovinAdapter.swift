@@ -53,17 +53,22 @@ class ComScoreBitmovinAdapter: NSObject {
     }
 
     deinit {
+        self.player.remove(listener: self)
+        destroy()
+    }
+
+    func update(metadata: ComScoreMetadata) {
+        self.dictionary = metadata.buildComScoreMetadataDictionary()
+        self.comScoreContentType = metadata.mediaType.toComScore()
+    }
+
+    func destroy() {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willResignActiveNotification,
                                                   object: nil)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
-    }
-
-    func update(metadata: ComScoreMetadata) {
-        self.dictionary = metadata.buildComScoreMetadataDictionary()
-        self.comScoreContentType = metadata.mediaType.toComScore()
     }
 
     func assetLength() -> TimeInterval {

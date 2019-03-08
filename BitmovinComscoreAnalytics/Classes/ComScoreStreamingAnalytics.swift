@@ -9,7 +9,7 @@ import Foundation
 import BitmovinPlayer
 
 public class ComScoreStreamingAnalytics {
-    let comScoreAdapter: ComScoreBitmovinAdapter
+    var comScoreAdapter: ComScoreBitmovinAdapter
 
     // MARK: - initializer
     /**
@@ -21,6 +21,13 @@ public class ComScoreStreamingAnalytics {
      */
     init(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) {
         self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, metadata: metadata)
+    }
+
+    /**
+     Destroys the ComScoreStreaming analytics object and unregisters it from the player
+    */
+    public func destroy() {
+        self.comScoreAdapter.destroy()
     }
 
     /**

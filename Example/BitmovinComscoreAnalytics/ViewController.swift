@@ -118,6 +118,30 @@ class ViewController: UIViewController {
         self.bitmovinPlayer?.unload()
     }
 
+    @IBAction func recreateButtonClicked(sender: UIButton) {
+        self.comScoreStreamingAnalytics?.destroy()
+        // Create a Comscore Configuration
+        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(mediaType: .longFormOnDemand,
+                                                                  publisherBrandName: "ABC",
+                                                                  programTitle: "Modern Family",
+                                                                  episodeTitle: "Rash Decisions",
+                                                                  episodeSeasonNumber: "1",
+                                                                  episodeNumber: "2",
+                                                                  contentGenre: "Comedy",
+                                                                  stationTitle: "Hulu",
+                                                                  completeEpisode: true)
+
+        // Create a ComScore Streaming Analytics
+        if let bitmovinPlayer = bitmovinPlayer {
+            do {
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer,
+                                                                                                    metadata: comScoreMetadata)
+            } catch {
+                print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
+            }
+        }
+    }
+
     @IBAction func reloadButtonClicked(sender: UIButton) {
         destroyPlayer()
         createPlayer()
