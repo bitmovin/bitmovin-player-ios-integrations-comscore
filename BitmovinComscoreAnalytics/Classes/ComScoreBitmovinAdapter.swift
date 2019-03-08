@@ -53,7 +53,6 @@ class ComScoreBitmovinAdapter: NSObject {
     }
 
     deinit {
-        self.player.remove(listener: self)
         destroy()
     }
 
@@ -63,6 +62,7 @@ class ComScoreBitmovinAdapter: NSObject {
     }
 
     func destroy() {
+        self.player.remove(listener: self)
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willResignActiveNotification,
                                                   object: nil)
