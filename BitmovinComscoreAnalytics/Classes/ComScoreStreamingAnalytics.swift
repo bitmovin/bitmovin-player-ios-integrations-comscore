@@ -9,7 +9,7 @@ import Foundation
 import BitmovinPlayer
 
 public class ComScoreStreamingAnalytics {
-    var comScoreAdapter: ComScoreBitmovinAdapter
+    let comScoreAdapter: ComScoreBitmovinAdapter
 
     // MARK: - initializer
     /**
