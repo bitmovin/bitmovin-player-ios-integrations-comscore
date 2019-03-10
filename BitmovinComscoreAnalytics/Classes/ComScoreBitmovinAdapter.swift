@@ -102,6 +102,8 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         if !player.isAd {
             stop()
         }
+        #else
+        stop()
         #endif
     }
 
@@ -140,6 +142,8 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         } else {
             playVideoContentPart()
         }
+        #else
+        playVideoContentPart()
         #endif
     }
 
