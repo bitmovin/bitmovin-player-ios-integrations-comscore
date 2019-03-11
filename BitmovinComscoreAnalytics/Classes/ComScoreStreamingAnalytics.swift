@@ -23,6 +23,17 @@ public class ComScoreStreamingAnalytics {
         self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, metadata: metadata)
     }
 
+    deinit {
+        self.comScoreAdapter.destroy()
+    }
+
+    /**
+     Destroys the ComScoreStreaming analytics object and unregisters it from the player
+    */
+    public func destroy() {
+        self.comScoreAdapter.destroy()
+    }
+
     /**
      Updates the metadata that is being tracked. Use this method when switching assets. Update metadata after unloading the old content and before loading the new content 
      */
