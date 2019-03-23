@@ -17,7 +17,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		D77479ADA00C128E483B1281 /* Pods_BitmovinComscoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42FEAD4E241E72DF3E64D46 /* Pods_BitmovinComscoreAnalytics_Example.framework */; };
 		F0F0ED15B232D31E35E9FC5C /* Pods_BitmovinComScoreAnalytics_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7779C5FC91FE9F78D8232AC2 /* Pods_BitmovinComScoreAnalytics_Example.framework */; };
 		FB25402ECCB3FCFEFAEDD110 /* Pods_BitmovinComScoreAnalytics_Example_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014D2A8A41DF050E3BAA181E /* Pods_BitmovinComScoreAnalytics_Example_tvOS.framework */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		B1FB36AAA4AAA44079020636 /* Pods-BitmovinComscoreAnalytics_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComscoreAnalytics_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComscoreAnalytics_Example/Pods-BitmovinComscoreAnalytics_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DDA49207E06ED74DB78BD8D5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E3EA34E9AFFAF70111208EC3 /* Pods-BitmovinComScoreAnalytics_Example_tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComScoreAnalytics_Example_tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		F42FEAD4E241E72DF3E64D46 /* Pods_BitmovinComscoreAnalytics_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitmovinComscoreAnalytics_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB664295C5109FEEA27C2947 /* Pods-BitmovinComScoreAnalytics_Example_tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitmovinComScoreAnalytics_Example_tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +74,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				01E75D5D21AD065A0073856C /* libc++abi.tbd in Frameworks */,
-				D77479ADA00C128E483B1281 /* Pods_BitmovinComscoreAnalytics_Example.framework in Frameworks */,
 				F0F0ED15B232D31E35E9FC5C /* Pods_BitmovinComScoreAnalytics_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				01E75D5C21AD065A0073856C /* libc++abi.tbd */,
-				F42FEAD4E241E72DF3E64D46 /* Pods_BitmovinComscoreAnalytics_Example.framework */,
 				7779C5FC91FE9F78D8232AC2 /* Pods_BitmovinComScoreAnalytics_Example.framework */,
 				014D2A8A41DF050E3BAA181E /* Pods_BitmovinComScoreAnalytics_Example_tvOS.framework */,
 			);
@@ -363,15 +359,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-iOS/SCORBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SCORBundle.bundle",
 			);
@@ -385,8 +377,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-tvOS/BitmovinComScoreAnalytics.framework",
@@ -394,8 +384,6 @@
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/tvOS/ComScore.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinComScoreAnalytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinPlayer.framework",
@@ -433,15 +421,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-tvOS/SCORBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SCORBundle.bundle",
 			);
@@ -455,8 +439,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-iOS/BitmovinComScoreAnalytics.framework",
@@ -465,8 +447,6 @@
 				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds/GoogleInteractiveMediaAds.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinComScoreAnalytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitmovinPlayer.framework",
