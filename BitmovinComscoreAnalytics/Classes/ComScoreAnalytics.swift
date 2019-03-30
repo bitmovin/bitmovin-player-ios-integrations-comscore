@@ -33,6 +33,10 @@ public final class ComScoreAnalytics {
             throw ComScoreError.notStarted
         }
     }
+
+    public static func isActive() -> Bool {
+        return ComScoreAnalytics.started
+    }
 }
 
 public enum ComScoreError: Error {
