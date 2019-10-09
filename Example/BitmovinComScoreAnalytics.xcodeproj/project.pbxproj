@@ -361,7 +361,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-iOS/SCORBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -370,7 +370,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3C41A4F5757DAF30872BF33A /* [CP] Embed Pods Frameworks */ = {
@@ -379,7 +379,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-tvOS/BitmovinComScoreAnalytics.framework",
 				"${PODS_ROOT}/BitmovinPlayer/tvOS/BitmovinPlayer.framework",
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/tvOS/ComScore.framework",
@@ -392,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B89F2BDC862E81A1C27F132 /* [CP] Check Pods Manifest.lock */ = {
@@ -423,7 +423,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ComScore-tvOS/SCORBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -432,7 +432,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BE5F41B677395562A026077C /* [CP] Embed Pods Frameworks */ = {
@@ -441,7 +441,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-iOS/BitmovinComScoreAnalytics.framework",
 				"${PODS_ROOT}/BitmovinPlayer/iOS/BitmovinPlayer.framework",
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/iOS/ComScore.framework",
@@ -456,7 +456,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EFB35F724F63E804F22F0FE3 /* [CP] Check Pods Manifest.lock */ = {
