@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BitmovinComScoreAnalytics'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'ComScore Analytics integration for the Bitmovin Player iOS SDK'
   s.description      = <<-DESC
   Comscore Analytics Integration for the Bitmovin Player iOS SDK
@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.ios.dependency 'BitmovinPlayer', '~> 2.15'
   s.tvos.dependency 'BitmovinPlayer', '~> 2.15'
-  s.ios.dependency 'ComScore'
-  s.tvos.dependency 'ComScore'
+  s.ios.dependency 'ComScore', '~> 5.8.7'
+  s.tvos.dependency 'ComScore', '~> 5.8.7'
   s.source_files = 'BitmovinComscoreAnalytics/Classes/**/*'  
 
 end
