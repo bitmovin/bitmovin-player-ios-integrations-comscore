@@ -253,6 +253,7 @@
 					01A476B42220E82F0068995C = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 7UXPEM3WRB;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 					607FACCF1AFB9204008FA782 = {
@@ -571,7 +572,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.1;
 			};
@@ -598,7 +599,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitmovin.player.integrations.comscore.BitmovinComScoreAnalytics-Example-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 12.1;
 			};
