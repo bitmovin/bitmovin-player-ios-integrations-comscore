@@ -1,23 +1,23 @@
 PODS:
-  - BitmovinComScoreAnalytics (1.1.0):
+  - BitmovinComScoreAnalytics (1.2.0):
     - BitmovinPlayer (~> 2.15)
     - ComScore (~> 5.8.7)
-  - BitmovinPlayer (2.19.0)
+  - BitmovinPlayer (2.35.0)
   - ComScore (5.8.7):
     - ComScore/Dynamic (= 5.8.7)
   - ComScore/Dynamic (5.8.7)
   - GoogleAds-IMA-iOS-SDK (3.7.0)
-  - SwiftLint (0.31.0)
+  - SwiftLint (0.37.0)
 
 DEPENDENCIES:
   - BitmovinComScoreAnalytics (from `../`)
-  - BitmovinPlayer (from `https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git`, tag `2.19.0`)
+  - BitmovinPlayer (from `https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git`, tag `2.35.0`)
   - ComScore (= 5.8.7)
   - GoogleAds-IMA-iOS-SDK (= 3.7.0)
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - ComScore
     - GoogleAds-IMA-iOS-SDK
     - SwiftLint
@@ -27,20 +27,20 @@ EXTERNAL SOURCES:
     :path: "../"
   BitmovinPlayer:
     :git: https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git
-    :tag: 2.19.0
+    :tag: 2.35.0
 
 CHECKOUT OPTIONS:
   BitmovinPlayer:
     :git: https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git
-    :tag: 2.19.0
+    :tag: 2.35.0
 
 SPEC CHECKSUMS:
-  BitmovinComScoreAnalytics: 151da1b654ffea954ca0f1ed3a6c5c5a0fe7c1fe
-  BitmovinPlayer: 234641f3f3f330b0abb1dd4583eccfca7325ee87
+  BitmovinComScoreAnalytics: 9bda41ebd9b0d7d204adbddb98e52a306dd9e1eb
+  BitmovinPlayer: ae4903f52305beb5cd98ed950de6fb3bb6c5f9a6
   ComScore: 4d377376e44c77de1e435a32fdf38d2507d6906c
   GoogleAds-IMA-iOS-SDK: cdc8901c00aa1aa4a383c9180df4c59bc94e2dcf
-  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
-PODFILE CHECKSUM: dd0d67d346a51ebab11fac9a323b225f7208f2a5
+PODFILE CHECKSUM: 64cbdf9e505df8544386ed448a186b865954c8d8
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4

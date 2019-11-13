@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = 'BitmovinComScoreAnalytics'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'ComScore Analytics integration for the Bitmovin Player iOS SDK'
   s.description      = <<-DESC
   Comscore Analytics Integration for the Bitmovin Player iOS SDK
                        DESC
 
-  s.swift_version    = '4.2'
+  s.swift_version    = '5'
   s.homepage         = 'https://github.com/Cory Zachman/BitmovinComScoreAnalytics'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Cory Zachman' => 'cory.zachman@bitmovin.com' }
