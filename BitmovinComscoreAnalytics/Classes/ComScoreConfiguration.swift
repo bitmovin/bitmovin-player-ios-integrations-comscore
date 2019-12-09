@@ -11,6 +11,7 @@ public class ComScoreConfiguration {
     public let publisherId: String
     public let publisherSecret: String
     public let applicationName: String
+    public let userConsent: ComScoreUserConsent
 
     // MARK: - initializer
     /**
@@ -21,9 +22,10 @@ public class ComScoreConfiguration {
      - publisherSecret: Publisher Secret assigned by ComScore
      - applicationName: The name of your application that will be used for ComScore tracking     
      */
-    public init(publisherId: String, publisherSecret: String, applicationName: String) {
+    public init(publisherId: String, publisherSecret: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown) {
         self.publisherId = publisherId
         self.publisherSecret = publisherSecret
         self.applicationName = applicationName
+        self.userConsent = userConsent
     }
 }

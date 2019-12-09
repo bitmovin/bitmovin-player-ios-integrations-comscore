@@ -17,6 +17,9 @@ public final class ComScoreAnalytics {
                 builder.publisherId = configuration.publisherId
                 builder.publisherSecret = configuration.publisherSecret
                 builder.applicationName = configuration.applicationName
+                if configuration.userConsent != .unknown {
+                    builder.persistentLabels = ["cs_ucfr": configuration.userConsent.rawValue]
+                }
                 SCORAnalytics.configuration()?.addClient(with: builder.build())
                 SCORAnalytics.start()
                 started = true
