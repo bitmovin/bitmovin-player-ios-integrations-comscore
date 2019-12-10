@@ -30,17 +30,30 @@ public final class ComScoreAnalytics {
             }
         }
     }
+
+    /**
+     Sets the user consent to granted. Use after the ComScoreAnalytics object has been started
+    */
+    public static func userConsentGranted() {
+        serialQueue.sync {
+            if started {
+                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration!.publisherId)
+                publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
+                SCORAnalytics.notifyHiddenEvent()
+            }
+        }
+    }
     
     /**
-     Updates the user consent.
-    - Parameters:
-    - configuration: The ComScoreConfiguration that contains your application specific information
+     Sets the user consent to denied. Use after the ComScoreAnalytics object has been started
     */
-    public static func updateUserConsent(configuration: ComScoreConfiguration) {
+    public static func userConsentDenied() {
         serialQueue.sync {
-            let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: configuration.publisherId)
-            publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: configuration.userConsent.rawValue)
-            SCORAnalytics.notifyHiddenEvent()
+            if started {
+                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration!.publisherId)
+                publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
+                SCORAnalytics.notifyHiddenEvent()
+            }
         }
     }
 
