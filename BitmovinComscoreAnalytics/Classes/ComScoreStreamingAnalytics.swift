@@ -40,14 +40,14 @@ public class ComScoreStreamingAnalytics {
     public func update(metadata: ComScoreMetadata) {
         comScoreAdapter.update(metadata: metadata)
     }
-    
+
     /**
      Sets the user consent value to granted
     */
     public func userConsentGranted() {
         comScoreAdapter.userConsentGranted()
     }
-    
+
     /**
      Sets the user consent value to denied
     */

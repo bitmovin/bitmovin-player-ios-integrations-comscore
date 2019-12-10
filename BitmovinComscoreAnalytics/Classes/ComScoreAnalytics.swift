@@ -4,7 +4,7 @@ import BitmovinPlayer
 public final class ComScoreAnalytics {
     private static let serialQueue = DispatchQueue(label: "com.bitmovin.player.integrations.comscore.ComScoreAnalytics")
     private static var started: Bool = false
-    private static var configuration: ComScoreConfiguration? = nil
+    private static var configuration: ComScoreConfiguration?
 
     /**
      Starts the ComScoreAnalytics monitoring. Must be called before creating a ComScoreStreamingAnalytics object
