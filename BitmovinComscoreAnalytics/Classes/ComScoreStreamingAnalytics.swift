@@ -19,8 +19,8 @@ public class ComScoreStreamingAnalytics {
      - player: BitmovinPlayer instance to track
      - metadata: ComScore metadata associated with the content you are tracking
      */
-    init(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) {
-        self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, metadata: metadata)
+    init(bitmovinPlayer: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
+        self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, configuration: configuration, metadata: metadata)
     }
 
     deinit {
@@ -40,5 +40,18 @@ public class ComScoreStreamingAnalytics {
     public func update(metadata: ComScoreMetadata) {
         comScoreAdapter.update(metadata: metadata)
     }
-
+    
+    /**
+     Sets the user consent value to granted
+    */
+    public func userConsentGranted() {
+        comScoreAdapter.userConsentGranted()
+    }
+    
+    /**
+     Sets the user consent value to denied
+    */
+    public func userConsentDenied() {
+        comScoreAdapter.userConsentDenied()
+    }
 }

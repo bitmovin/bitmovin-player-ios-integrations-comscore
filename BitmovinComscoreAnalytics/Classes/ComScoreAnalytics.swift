@@ -4,6 +4,7 @@ import BitmovinPlayer
 public final class ComScoreAnalytics {
     private static let serialQueue = DispatchQueue(label: "com.bitmovin.player.integrations.comscore.ComScoreAnalytics")
     private static var started: Bool = false
+    private static var configuration: ComScoreConfiguration? = nil
 
     /**
      Starts the ComScoreAnalytics monitoring. Must be called before creating a ComScoreStreamingAnalytics object
@@ -13,6 +14,7 @@ public final class ComScoreAnalytics {
     public static func start(configuration: ComScoreConfiguration) {
         serialQueue.sync {
             if !started {
+                ComScoreAnalytics.configuration = configuration
                 let builder = SCORPublisherConfigurationBuilder()
                 builder.publisherId = configuration.publisherId
                 builder.publisherSecret = configuration.publisherSecret
@@ -31,7 +33,7 @@ public final class ComScoreAnalytics {
 
     public static func createComScoreStreamingAnalytics(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) throws -> ComScoreStreamingAnalytics? {
         if started {
-            return ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: metadata)
+            return ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, configuration: ComScoreAnalytics.configuration!, metadata: metadata)
         } else {
             throw ComScoreError.notStarted
         }
