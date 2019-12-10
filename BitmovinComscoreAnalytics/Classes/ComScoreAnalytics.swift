@@ -30,6 +30,19 @@ public final class ComScoreAnalytics {
             }
         }
     }
+    
+    /**
+     Updates the user consent.
+    - Parameters:
+    - configuration: The ComScoreConfiguration that contains your application specific information
+    */
+    public static func updateUserConsent(configuration: ComScoreConfiguration) {
+        serialQueue.sync {
+            let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: configuration.publisherId)
+            publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: configuration.userConsent.rawValue)
+            SCORAnalytics.notifyHiddenEvent()
+        }
+    }
 
     public static func createComScoreStreamingAnalytics(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) throws -> ComScoreStreamingAnalytics? {
         if started {
