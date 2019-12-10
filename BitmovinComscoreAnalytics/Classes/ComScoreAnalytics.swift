@@ -37,7 +37,7 @@ public final class ComScoreAnalytics {
     public static func userConsentGranted() {
         serialQueue.sync {
             if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration!.publisherId)
+                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
                 publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
                 SCORAnalytics.notifyHiddenEvent()
             }
@@ -50,7 +50,7 @@ public final class ComScoreAnalytics {
     public static func userConsentDenied() {
         serialQueue.sync {
             if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration!.publisherId)
+                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
                 publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
                 SCORAnalytics.notifyHiddenEvent()
             }
