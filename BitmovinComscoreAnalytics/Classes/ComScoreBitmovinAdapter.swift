@@ -18,6 +18,7 @@ enum ComScoreState {
 class ComScoreBitmovinAdapter: NSObject {
     private let comScore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
     private let player: BitmovinPlayer
+    private let configuration: ComScoreConfiguration
     private var comScoreContentType: SCORContentType
     private var internalDictionary: [String: Any] = [:]
     private var state: ComScoreState = .stopped
@@ -36,8 +37,9 @@ class ComScoreBitmovinAdapter: NSObject {
         }
     }
 
-    init(player: BitmovinPlayer, metadata: ComScoreMetadata) {
+    init(player: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
         self.player = player
+        self.configuration = configuration
         self.comScoreContentType = metadata.mediaType.toComScore()
         super.init()
         self.player.add(listener: self)
@@ -54,6 +56,21 @@ class ComScoreBitmovinAdapter: NSObject {
 
     deinit {
         destroy()
+    }
+
+    func userConsentGranted() {
+        updateUserConsent(userConsent: .granted)
+    }
+
+    func userConsentDenied() {
+        updateUserConsent(userConsent: .denied)
+    }
+
+    private func updateUserConsent(userConsent: ComScoreUserConsent) {
+        self.configuration.userConsent = userConsent
+        let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: self.configuration.publisherId)
+        publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: userConsent.rawValue)
+        SCORAnalytics.notifyHiddenEvent()
     }
 
     func update(metadata: ComScoreMetadata) {
