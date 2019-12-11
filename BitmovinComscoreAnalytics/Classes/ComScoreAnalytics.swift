@@ -43,7 +43,7 @@ public final class ComScoreAnalytics {
             }
         }
     }
-    
+
     /**
      Sets the user consent to denied. Use after the ComScoreAnalytics object has been started
     */
