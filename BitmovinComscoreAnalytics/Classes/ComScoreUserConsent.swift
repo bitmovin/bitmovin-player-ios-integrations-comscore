@@ -1,9 +1,11 @@
 //
 //  ComScoreUserConsent.swift
-//  BitmovinComScoreAnalytics-iOS
+//  Pods
 //
-//  Created by aneurinc on 12/9/19.
+//  Created by aneurinc on 12/11/19.
 //
+
+import Foundation
 
 public enum ComScoreUserConsent : String {
     case denied = "0"
