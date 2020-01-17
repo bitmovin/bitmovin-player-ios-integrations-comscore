@@ -9,6 +9,7 @@ import Foundation
 /**
  Metadata object describing the content that is being played back
  */
+@frozen
 public struct ComScoreMetadata {
     let mediaType: ComScoreMediaType
     let uniqueContentId: String?

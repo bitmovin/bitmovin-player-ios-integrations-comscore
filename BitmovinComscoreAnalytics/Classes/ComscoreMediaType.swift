@@ -11,6 +11,7 @@ import ComScore
 /**
  ComScoreMediaType associated with the content you have loaded into the BitmovinPlayer
  */
+@frozen
 public enum ComScoreMediaType: String {
     case longFormOnDemand
     case shortFormOnDemand

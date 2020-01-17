@@ -70,6 +70,7 @@ public final class ComScoreAnalytics {
     }
 }
 
+@frozen
 public enum ComScoreError: Error {
     case notStarted
 }
