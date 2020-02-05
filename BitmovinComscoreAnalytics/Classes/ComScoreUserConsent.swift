@@ -7,6 +7,7 @@
 
 import Foundation
 
+@frozen
 public enum ComScoreUserConsent: String {
     case denied = "0"
     case granted = "1"
