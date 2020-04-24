@@ -44,14 +44,19 @@ class ComScoreBitmovinAdapter: NSObject {
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillResignActive),
-                                               name: UIApplication.willResignActiveNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationWillBecomeActive),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationWillResignActive),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationWillBecomeActive),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
+        BitLog.isEnabled = configuration.isDebug
     }
     
     deinit {
@@ -74,6 +79,7 @@ class ComScoreBitmovinAdapter: NSObject {
         let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: self.configuration.publisherId)
         publisherConfig?.setPersistentLabelWithName(label.0, value: label.1)
         SCORAnalytics.notifyHiddenEvent()
+        BitLog.d("ComScore persistent label set: [\(label.0):\(label.1)]")
     }
 
     public func setPersistentLabels(labels: [String: String]) {
@@ -82,6 +88,7 @@ class ComScoreBitmovinAdapter: NSObject {
             publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
         }
         SCORAnalytics.notifyHiddenEvent(withLabels: labels)
+        BitLog.d("ComScore persistent labels set: [\(labels.map { "\($0.key):\($0.value)"})]")
     }
     
     func update(metadata: ComScoreMetadata) {
@@ -118,7 +125,6 @@ class ComScoreBitmovinAdapter: NSObject {
 
 extension ComScoreBitmovinAdapter: PlayerListener {
     func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
-        NSLog("[ComScoreAnalytics] Stopping due to playback finished event")
         stop()
     }
     
@@ -155,15 +161,15 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     }
     
     func onAdBreakStarted(_ event: AdBreakStartedEvent) {
-        NSLog("[ComScoreAnalytics] On Ad Break Started")
+        BitLog.d("Ad break started")
     }
     
     func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
-        NSLog("[ComScoreAnalytics] On Ad Break Finished")
+        BitLog.d("Ad break finished")
     }
     
     private func resume() {
-        //TODO remove once we have iOS support
+        // TODO remove once we have iOS support
         #if os(iOS)
         if player.isAd {
             playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
@@ -178,7 +184,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
-                NSLog("[ComScoreAnalytics] Stopping")
+                BitLog.d("Stopping ComScore tracking")
                 state = .stopped
                 comScore.stop()
             }
@@ -188,10 +194,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     private func playVideoContentPart() {
         self.accessQueue.sync {
             if state != .video {
-                NSLog("[ComScoreAnalytics] Stopping due to Video starting")
                 stop()
                 state = .video
-                NSLog("[ComScoreAnalytics] Sending Play Video Content")
+                BitLog.d("Starting ComScore video content tracking")
                 comScore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
             }
         }
@@ -205,7 +210,6 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         
         self.accessQueue.sync {
             if state != .advertisement {
-                NSLog("[ComScoreAnalytics] Stopping due to Ad Started Event")
                 stop()
                 state = .advertisement
                 let assetLength: Int = Int(duration * 1000)
@@ -226,7 +230,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                     }
                 }
                 
-                NSLog("[ComScoreAnalytics] Sending Play Ad")
+                BitLog.d("Starting ComScore ad play tracking")
                 comScore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
             }
         }

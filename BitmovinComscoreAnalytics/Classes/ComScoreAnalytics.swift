@@ -41,6 +41,7 @@ public final class ComScoreAnalytics {
                 let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
                 publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
                 SCORAnalytics.notifyHiddenEvent()
+                BitLog.d("ComScore user consent granted")
             }
         }
     }
@@ -55,6 +56,7 @@ public final class ComScoreAnalytics {
                 let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
                 publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
                 SCORAnalytics.notifyHiddenEvent()
+                BitLog.d("ComScore user consent denied")
             }
         }
     }
@@ -70,6 +72,7 @@ public final class ComScoreAnalytics {
                 let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
                 publisherConfig?.setPersistentLabelWithName(label.0, value: label.1)
                 SCORAnalytics.notifyHiddenEvent()
+                BitLog.d("ComScore persistent label set: [\(label.0):\(label.1)]")
             }
         }
     }
@@ -87,6 +90,7 @@ public final class ComScoreAnalytics {
                     publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
                 }
                 SCORAnalytics.notifyHiddenEvent(withLabels: labels)
+                BitLog.d("ComScore persistent labels set: [\(labels.map { "\($0.key):\($0.value)"})]")
             }
         }
     }
