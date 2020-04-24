@@ -160,14 +160,6 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         playVideoContentPart()
     }
     
-    func onAdBreakStarted(_ event: AdBreakStartedEvent) {
-        BitLog.d("Ad break started")
-    }
-    
-    func onAdBreakFinished(_ event: AdBreakFinishedEvent) {
-        BitLog.d("Ad break finished")
-    }
-    
     private func resume() {
         // TODO remove once we have iOS support
         #if os(iOS)
