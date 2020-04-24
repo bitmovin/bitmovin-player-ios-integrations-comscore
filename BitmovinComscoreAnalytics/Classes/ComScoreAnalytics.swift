@@ -83,7 +83,9 @@ public final class ComScoreAnalytics {
         serialQueue.sync {
             if started {
                 let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                labels.forEach { publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1) }
+                labels.forEach {
+                    publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
+                }
                 SCORAnalytics.notifyHiddenEvent(withLabels: labels)
             }
         }

@@ -78,7 +78,9 @@ class ComScoreBitmovinAdapter: NSObject {
 
     public func setPersistentLabels(labels: [String: String]) {
         let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: self.configuration.publisherId)
-        labels.forEach { publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1) }
+        labels.forEach {
+            publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
+        }
         SCORAnalytics.notifyHiddenEvent(withLabels: labels)
     }
     
