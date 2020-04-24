@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="ipad12_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,27 +20,47 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CD-o4-NTg">
-                                <rect key="frame" x="0.0" y="28" width="1024" height="1338"/>
+                                <rect key="frame" x="0.0" y="8" width="1024" height="1358"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nN-Wu-Vws" userLabel="playerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1338"/>
+                                        <rect key="frame" x="262" y="429" width="500" height="500"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="500" id="fa0-ca-M8S"/>
+                                            <constraint firstAttribute="width" constant="500" id="m8P-oi-zaK"/>
+                                        </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYS-qW-6O9">
+                                        <rect key="frame" x="497" y="391" width="30" height="30"/>
+                                        <state key="normal" title="UD"/>
+                                        <connections>
+                                            <action selector="deniedPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YgW-CV-lC7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chm-fc-PTu">
+                                        <rect key="frame" x="535" y="391" width="30" height="30"/>
+                                        <state key="normal" title="UG"/>
+                                        <connections>
+                                            <action selector="grantedPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yKL-Q8-bxl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="2nN-Wu-Vws" secondAttribute="trailing" id="4dQ-bW-8Vw"/>
-                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="centerY" secondItem="1CD-o4-NTg" secondAttribute="centerY" id="Tho-cm-fG0"/>
-                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="leading" secondItem="1CD-o4-NTg" secondAttribute="leading" id="l3h-NK-11R"/>
-                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="1CD-o4-NTg" secondAttribute="top" id="qQr-Jd-txv"/>
+                                    <constraint firstItem="chm-fc-PTu" firstAttribute="leading" secondItem="eYS-qW-6O9" secondAttribute="trailing" constant="8" id="BrW-5M-Gut"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="centerX" secondItem="1CD-o4-NTg" secondAttribute="centerX" id="GAo-sA-7Uc"/>
+                                    <constraint firstItem="eYS-qW-6O9" firstAttribute="centerX" secondItem="1CD-o4-NTg" secondAttribute="centerX" id="Gv1-PC-2X5"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="eYS-qW-6O9" secondAttribute="bottom" constant="8" id="Z6g-RF-SDX"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="centerY" secondItem="1CD-o4-NTg" secondAttribute="centerY" id="bSF-cQ-Gvh"/>
+                                    <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="chm-fc-PTu" secondAttribute="bottom" constant="8" id="g5e-ye-MRJ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIV-Jg-AD5">
-                                <rect key="frame" x="231" y="32" width="48" height="30"/>
+                                <rect key="frame" x="231" y="12" width="48" height="30"/>
                                 <state key="normal" title="LIVE"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-sl-lp4" userLabel="Recreate">
-                                <rect key="frame" x="286" y="32" width="61" height="30"/>
+                                <rect key="frame" x="286" y="12" width="61" height="30"/>
                                 <state key="normal" title="Recreate"/>
                                 <connections>
                                     <action selector="recreateButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jd9-bn-RPs"/>
@@ -50,7 +68,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-kh-a47">
-                                <rect key="frame" x="25" y="32" width="32" height="30"/>
+                                <rect key="frame" x="25" y="12" width="32" height="30"/>
                                 <state key="normal" title="VOD"/>
                                 <connections>
                                     <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="lSN-bU-vak"/>
@@ -58,7 +76,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qK-fB-hlo">
-                                <rect key="frame" x="83" y="32" width="49" height="30"/>
+                                <rect key="frame" x="83" y="12" width="49" height="30"/>
                                 <state key="normal" title="Unload"/>
                                 <connections>
                                     <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="FCz-ZA-Gh6"/>
@@ -66,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzQ-FK-KOf">
-                                <rect key="frame" x="158" y="32" width="47" height="30"/>
+                                <rect key="frame" x="158" y="12" width="47" height="30"/>
                                 <state key="normal" title="Reload"/>
                                 <connections>
                                     <action selector="reloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="CfT-NL-mHi"/>
