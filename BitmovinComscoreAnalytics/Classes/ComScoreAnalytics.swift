@@ -26,7 +26,7 @@ public final class ComScoreAnalytics {
                 SCORAnalytics.start()
                 started = true
             } else {
-                NSLog("ComScoreAnalytics has already been started. Ignoring call to start")
+                BitLog.d("ComScoreAnalytics has already been started. Ignoring call to start")
             }
         }
     }
