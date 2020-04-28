@@ -12,6 +12,7 @@ public class ComScoreConfiguration {
     public let publisherSecret: String
     public let applicationName: String
     public var userConsent: ComScoreUserConsent
+    public var isDebug: Bool
 
     // MARK: - initializer
     /**
@@ -23,10 +24,11 @@ public class ComScoreConfiguration {
      - applicationName: The name of your application that will be used for ComScore tracking
      - userConsent: Whether the user has given their consent to have data collected by ComScore
      */
-    public init(publisherId: String, publisherSecret: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown) {
+    public init(publisherId: String, publisherSecret: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown, isDebug: Bool = false) {
         self.publisherId = publisherId
         self.publisherSecret = publisherSecret
         self.applicationName = applicationName
         self.userConsent = userConsent
+        self.isDebug = isDebug
     }
 }

@@ -15,10 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let comscoreConfiguration: ComScoreConfiguration = ComScoreConfiguration(publisherId: "YOUR_PUBLISHER_ID",
-                                                                                 publisherSecret: "YOUR_PUBLISHER_SECRET",
-                                                                                 applicationName: "YOUR_APPLICATION_NAME",
-                                                                                 userConsent: .granted)
+        let comscoreConfiguration: ComScoreConfiguration = ComScoreConfiguration(
+            publisherId: "YOUR_PUBLISHER_ID",
+            publisherSecret: "YOUR_PUBLISHER_SECRET",
+            applicationName: "YOUR_APPLICATION_NAME",
+            userConsent: .granted,
+            isDebug: true
+        )
         ComScoreAnalytics.start(configuration: comscoreConfiguration)
 
         return true
