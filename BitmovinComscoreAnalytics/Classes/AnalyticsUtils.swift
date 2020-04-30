@@ -8,7 +8,7 @@
 import Foundation
 import ComScore
 
-func notifyHiddenEvent(publisherId: String, label: String, value: String) {
+func notifyHiddenEvent(publisherId: String?, label: String, value: String) {
     let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: publisherId)
     publisherConfig?.setPersistentLabelWithName(label, value: value)
     SCORAnalytics.notifyHiddenEvent()
