@@ -60,10 +60,11 @@ public class ComScoreStreamingAnalytics {
     /**
      Set a persistent label on the ComScore PublisherConfiguration
      - Parameters:
-     - label: The label to set
+     - label: The label name
+     - value: The label value
      */
-    public func setPersistentLabel(label: (String, String)) {
-        comScoreAdapter.setPersistentLabel(label: label)
+    public func setPersistentLabel(label: String, value: String) {
+        comScoreAdapter.setPersistentLabel(label: label, value: value)
     }
     
     /**

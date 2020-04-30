@@ -64,15 +64,16 @@ public final class ComScoreAnalytics {
     /**
      Set a persistent label on the ComScore PublisherConfiguration
      - Parameters:
-     - label: The label to set
+     - label: The label name
+     - value: The label value
      */
-    public static func setPersistentLabel(label: (String, String)) {
+    public static func setPersistentLabel(label: String, value: String) {
         serialQueue.sync {
             if started {
                 let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                publisherConfig?.setPersistentLabelWithName(label.0, value: label.1)
+                publisherConfig?.setPersistentLabelWithName(label, value: value)
                 SCORAnalytics.notifyHiddenEvent()
-                BitLog.d("ComScore persistent label set: [\(label.0):\(label.1)]")
+                BitLog.d("ComScore persistent label set: [\(label):\(value)]")
             }
         }
     }
@@ -85,11 +86,7 @@ public final class ComScoreAnalytics {
     public static func setPersistentLabels(labels: [String: String]) {
         serialQueue.sync {
             if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                labels.forEach {
-                    publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
-                }
-                SCORAnalytics.notifyHiddenEvent(withLabels: labels)
+                notifyHiddenEvents(publisherId: ComScoreAnalytics.configuration?.publisherId, labels: labels)
                 BitLog.d("ComScore persistent labels set: [\(labels.map { "\($0.key):\($0.value)"})]")
             }
         }
