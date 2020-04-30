@@ -1,5 +1,5 @@
 PODS:
-  - BitmovinComScoreAnalytics (1.4.0):
+  - BitmovinComScoreAnalytics (1.4.1):
     - BitmovinPlayer (~> 2.15)
     - ComScore (~> 5.8.7)
   - BitmovinPlayer (2.35.0)
@@ -35,7 +35,7 @@ CHECKOUT OPTIONS:
     :tag: 2.35.0
 
 SPEC CHECKSUMS:
-  BitmovinComScoreAnalytics: 4b338c6508421c27e73f6044da88f4749a26c045
+  BitmovinComScoreAnalytics: 99db65ec19e97114d6ee976e756bca9a0465bc2f
   BitmovinPlayer: ae4903f52305beb5cd98ed950de6fb3bb6c5f9a6
   ComScore: 4d377376e44c77de1e435a32fdf38d2507d6906c
   GoogleAds-IMA-iOS-SDK: cdc8901c00aa1aa4a383c9180df4c59bc94e2dcf
