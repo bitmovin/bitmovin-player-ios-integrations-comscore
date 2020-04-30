@@ -34,7 +34,7 @@ public final class ComScoreAnalytics {
     /**
      Set user consent to ComScoreUserConsent.GRANTED
      */
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     public static func userConsentGranted() {
         serialQueue.sync {
             if started {
@@ -49,7 +49,7 @@ public final class ComScoreAnalytics {
     /**
      Set user consent to ComScoreUserConsent.DENIED
      */
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     public static func userConsentDenied() {
         serialQueue.sync {
             if started {
@@ -70,9 +70,7 @@ public final class ComScoreAnalytics {
     public static func setPersistentLabel(label: String, value: String) {
         serialQueue.sync {
             if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                publisherConfig?.setPersistentLabelWithName(label, value: value)
-                SCORAnalytics.notifyHiddenEvent()
+                notifyHiddenEvent(publisherId: ComScoreAnalytics.configuration?.publisherId, label: label, value: value)
                 BitLog.d("ComScore persistent label set: [\(label):\(value)]")
             }
         }

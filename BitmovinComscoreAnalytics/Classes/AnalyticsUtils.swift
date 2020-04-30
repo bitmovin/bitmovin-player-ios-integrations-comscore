@@ -14,7 +14,7 @@ func notifyHiddenEvent(publisherId: String, label: String, value: String) {
     SCORAnalytics.notifyHiddenEvent()
 }
 
-func notifyHiddenEvents(publisherId: String?, labels: [String:String]) {
+func notifyHiddenEvents(publisherId: String?, labels: [String: String]) {
     let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: publisherId)
     labels.forEach {
         publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)

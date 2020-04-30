@@ -44,7 +44,7 @@ public class ComScoreStreamingAnalytics {
     /**
      Set user consent to ComScoreUserConsent.GRANTED
      */
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     public func userConsentGranted() {
         comScoreAdapter.userConsentGranted()
     }
@@ -52,7 +52,7 @@ public class ComScoreStreamingAnalytics {
     /**
      Set user consent to ComScoreUserConsent.DENIED
      */
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     public func userConsentDenied() {
         comScoreAdapter.userConsentDenied()
     }

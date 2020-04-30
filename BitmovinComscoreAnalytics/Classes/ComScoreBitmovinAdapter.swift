@@ -63,13 +63,13 @@ class ComScoreBitmovinAdapter: NSObject {
         destroy()
     }
     
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     func userConsentGranted() {
         setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
         self.configuration.userConsent = .granted
     }
     
-    @available(*, deprecated, message: "Deprecated as of release 1.3.0")
+    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
     func userConsentDenied() {
         setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
         self.configuration.userConsent = .denied
