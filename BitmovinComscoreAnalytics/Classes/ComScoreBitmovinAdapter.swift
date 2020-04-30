@@ -65,29 +65,23 @@ class ComScoreBitmovinAdapter: NSObject {
     
     @available(*, deprecated, message: "Deprecated as of release 1.3.0")
     func userConsentGranted() {
-        setPersistentLabel(label: ("cs_ucfr", ComScoreUserConsent.granted.rawValue))
+        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
         self.configuration.userConsent = .granted
     }
     
     @available(*, deprecated, message: "Deprecated as of release 1.3.0")
     func userConsentDenied() {
-        setPersistentLabel(label: ("cs_ucfr", ComScoreUserConsent.denied.rawValue))
+        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
         self.configuration.userConsent = .denied
     }
     
-    public func setPersistentLabel(label: (String, String)) {
-        let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: self.configuration.publisherId)
-        publisherConfig?.setPersistentLabelWithName(label.0, value: label.1)
-        SCORAnalytics.notifyHiddenEvent()
-        BitLog.d("ComScore persistent label set: [\(label.0):\(label.1)]")
+    public func setPersistentLabel(label: String, value: String) {
+        notifyHiddenEvent(publisherId: self.configuration.publisherId, label: label, value: value)
+        BitLog.d("ComScore persistent label set: [\(label):\(value)]")
     }
 
     public func setPersistentLabels(labels: [String: String]) {
-        let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: self.configuration.publisherId)
-        labels.forEach {
-            publisherConfig?.setPersistentLabelWithName($0.0, value: $0.1)
-        }
-        SCORAnalytics.notifyHiddenEvent(withLabels: labels)
+        notifyHiddenEvents(publisherId: self.configuration.publisherId, labels: labels)
         BitLog.d("ComScore persistent labels set: [\(labels.map { "\($0.key):\($0.value)"})]")
     }
     
