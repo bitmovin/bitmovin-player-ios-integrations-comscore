@@ -2,7 +2,7 @@ def shared_pods
     pod 'BitmovinComScoreAnalytics', path: '../'
     pod 'BitmovinPlayer', git: 'https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git', tag: '2.35.0'
     pod 'SwiftLint'
-    pod 'ComScore', '5.8.7'
+    pod 'ComScore', '6.3.2'
 end
 
 target 'BitmovinComScoreAnalytics_Example' do
