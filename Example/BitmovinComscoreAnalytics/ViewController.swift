@@ -17,10 +17,7 @@ class ViewController: UIViewController {
 
     var bitmovinPlayer: BitmovinPlayer?
     @IBOutlet var playerView: UIView!
-    @IBOutlet var unloadButton: UIButton!
-    @IBOutlet var liveButton: UIButton!
-    @IBOutlet var vodButton: UIButton!
-    @IBOutlet var reloadButton: UIButton!
+
     var comScoreStreamingAnalytics: ComScoreStreamingAnalytics?
 
     var bitmovinPlayerView: PlayerView?
@@ -31,15 +28,9 @@ class ViewController: UIViewController {
     }
 
     func createPlayer() {
-        self.view.backgroundColor = .black
-
-        // Define needed resources
-        guard let streamUrl = URL(string: "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8") else {
-            return
-        }
-
         // Create player configuration
         let config = PlayerConfiguration()
+        config.playbackConfiguration.isAutoplayEnabled = true
 
         // Create Advertising configuration
         let adSource1 = AdSource(tag: urlWithCorrelator(adTag: adTagVastSkippable), ofType: .IMA)
@@ -52,56 +43,27 @@ class ViewController: UIViewController {
 
         let adConfig = AdvertisingConfiguration(schedule: [preRoll, midRoll, postRoll])
         config.advertisingConfiguration = adConfig
-
-        do {
-            try config.setSourceItem(url: streamUrl)
-
-            // Create player based on player configuration
-            let player = BitmovinPlayer(configuration: config)
-            self.bitmovinPlayer = player
-
-            // Create a Comscore Configuration
-            let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(
-                mediaType: .longFormOnDemand,
-                publisherBrandName: "ABC",
-                programTitle: "Modern Family",
-                episodeTitle: "Rash Decisions",
-                episodeSeasonNumber: "1",
-                episodeNumber: "2",
-                contentGenre: "Comedy",
-                stationTitle: "Hulu",
-                completeEpisode: true
-            )
-
-            // Create a ComScore Streaming Analytics
-            if let bitmovinPlayer = bitmovinPlayer {
-                do {
-                    try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
-                } catch {
-                    print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
-                }
+        
+        // Create player based on player configuration
+        let player = BitmovinPlayer(configuration: config)
+        self.bitmovinPlayer = player
+        
+        if bitmovinPlayerView == nil {
+            // Create player view and pass the player instance to it
+            bitmovinPlayerView = BMPBitmovinPlayerView(player: player, frame: .zero)
+            
+            guard let view = bitmovinPlayerView else {
+                return
             }
-
-            if bitmovinPlayerView == nil {
-                // Create player view and pass the player instance to it
-                bitmovinPlayerView = BMPBitmovinPlayerView(player: player, frame: .zero)
-
-                guard let view = bitmovinPlayerView else {
-                    return
-                }
-
-                // Size the player view
-                view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-                view.frame = playerView.bounds
-                playerView.addSubview(view)
-                playerView.bringSubviewToFront(view)
-
-            } else {
-                bitmovinPlayerView?.player = bitmovinPlayer
-            }
-
-        } catch {
-            print("Configuration error: \(error)")
+            
+            // Size the player view
+            view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            view.frame = playerView.bounds
+            playerView.addSubview(view)
+            playerView.bringSubviewToFront(view)
+            
+        } else {
+            bitmovinPlayerView?.player = bitmovinPlayer
         }
     }
 
@@ -116,73 +78,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func unloadButtonClicked(sender: UIButton) {
-        self.bitmovinPlayer?.unload()
-    }
-
-    @IBAction func recreateButtonClicked(sender: UIButton) {
-        self.comScoreStreamingAnalytics?.destroy()
-        
-        // Create ComScoreMetadata
-        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(
-            mediaType: .longFormOnDemand,
-            publisherBrandName: "ABC",
-            programTitle: "Modern Family",
-            episodeTitle: "Rash Decisions",
-            episodeSeasonNumber: "1",
-            episodeNumber: "2",
-            contentGenre: "Comedy",
-            stationTitle: "Hulu",
-            completeEpisode: true
-        )
-
-        // Create a ComScore Streaming Analytics
-        if let bitmovinPlayer = bitmovinPlayer {
-            do {
-                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer,
-                                                                                                    metadata: comScoreMetadata)
-            } catch {
-                print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
-            }
-        }
-    }
-
-    @IBAction func reloadButtonClicked(sender: UIButton) {
-        destroyPlayer()
-        createPlayer()
+        bitmovinPlayer?.unload()
     }
 
     @IBAction func vodButtonClicked(sender: UIButton) {
-        guard let streamUrl = URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8") else {
-            return
-        }
-
-        // Create ComScoreMetadata
-        let comScoreMetadata: ComScoreMetadata = ComScoreMetadata(
-            mediaType: .longFormOnDemand,
-            publisherBrandName: "ABC",
-            programTitle: "Modern Family",
-            episodeTitle: "Rash Decisions",
-            episodeSeasonNumber: "1",
-            episodeNumber: "2",
-            contentGenre: "Comedy",
-            stationTitle: "Hulu",
-            completeEpisode: true
-        )
-
-        if let bitmovinPlayer = bitmovinPlayer {
-            do {
-                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
-            } catch {
-                print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
-            }
-        }
-
-        let sourceConfig = SourceConfiguration()
-        sourceConfig.addSourceItem(item: SourceItem(hlsSource: HLSSource(url: streamUrl)))
-        bitmovinPlayer?.load(sourceConfiguration: sourceConfig)
-    }
-
-    @IBAction func liveButtonClicked(sender: UIButton) {
         guard let streamUrl = URL(string: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8") else {
             return
         }

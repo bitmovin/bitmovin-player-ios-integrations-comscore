@@ -182,13 +182,14 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             if state != .video {
                 stop()
                 state = .video
-                BitLog.d("Starting ComScore video content tracking")
                 let contentMetadata = SCORStreamingContentMetadata { builder in
                     builder?.setMediaType(self.contentType)
                     builder?.setCustomLabels(self.dictionary)
                 }
                 streamingAnalytics.setMetadata(contentMetadata)
                 streamingAnalytics.notifyPlay()
+                
+                BitLog.d("Starting ComScore video content tracking")
             }
         }
     }
