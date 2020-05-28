@@ -15,14 +15,17 @@ public final class ComScoreAnalytics {
         serialQueue.sync {
             if !started {
                 ComScoreAnalytics.configuration = configuration
-                let builder = SCORPublisherConfigurationBuilder()
-                builder.publisherId = configuration.publisherId
-                builder.publisherSecret = configuration.publisherSecret
-                builder.applicationName = configuration.applicationName
+                let publisherConfig = SCORPublisherConfiguration(builderBlock: { builder in
+                    builder?.publisherId = configuration.publisherId
+                })
+                SCORAnalytics.configuration().addClient(with: publisherConfig)
+                SCORAnalytics.configuration().applicationName = configuration.applicationName
                 if configuration.userConsent != .unknown {
-                    builder.persistentLabels = ["cs_ucfr": configuration.userConsent.rawValue]
+                    SCORAnalytics.configuration().setPersistentLabelWithName(
+                        "cs_ucfr",
+                        value: configuration.userConsent.rawValue
+                    )
                 }
-                SCORAnalytics.configuration()?.addClient(with: builder.build())
                 SCORAnalytics.start()
                 started = true
             } else {
@@ -31,35 +34,6 @@ public final class ComScoreAnalytics {
         }
     }
     
-    /**
-     Set user consent to ComScoreUserConsent.GRANTED
-     */
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    public static func userConsentGranted() {
-        serialQueue.sync {
-            if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
-                SCORAnalytics.notifyHiddenEvent()
-                BitLog.d("ComScore user consent granted")
-            }
-        }
-    }
-    
-    /**
-     Set user consent to ComScoreUserConsent.DENIED
-     */
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    public static func userConsentDenied() {
-        serialQueue.sync {
-            if started {
-                let publisherConfig = SCORAnalytics.configuration().publisherConfiguration(withPublisherId: ComScoreAnalytics.configuration?.publisherId)
-                publisherConfig?.setPersistentLabelWithName("cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
-                SCORAnalytics.notifyHiddenEvent()
-                BitLog.d("ComScore user consent denied")
-            }
-        }
-    }
     
     /**
      Set a persistent label on the ComScore PublisherConfiguration

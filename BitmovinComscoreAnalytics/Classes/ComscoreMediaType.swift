@@ -22,7 +22,7 @@ public enum ComScoreMediaType: String {
     case bumper
     case other
 
-    func toComScore() -> SCORContentType {
+    func toComScore() -> SCORStreamingContentType {
         switch self {
         case .longFormOnDemand:
             return .longFormOnDemand

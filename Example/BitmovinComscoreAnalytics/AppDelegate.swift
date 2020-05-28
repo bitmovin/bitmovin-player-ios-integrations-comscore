@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let comscoreConfiguration: ComScoreConfiguration = ComScoreConfiguration(
             publisherId: "YOUR_PUBLISHER_ID",
-            publisherSecret: "YOUR_PUBLISHER_SECRET",
             applicationName: "YOUR_APPLICATION_NAME",
             userConsent: .granted,
             isDebug: true
