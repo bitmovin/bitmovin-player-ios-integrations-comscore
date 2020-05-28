@@ -381,7 +381,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example_tvOS/Pods-BitmovinComScoreAnalytics_Example_tvOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-tvOS/BitmovinComScoreAnalytics.framework",
-				"${PODS_ROOT}/BitmovinPlayer/tvOS/BitmovinPlayer.framework",
+				"${PODS_ROOT}/BitmovinPlayer/BitmovinPlayer/tvOS/BitmovinPlayer.framework",
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/tvOS/ComScore.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -443,9 +443,9 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BitmovinComScoreAnalytics_Example/Pods-BitmovinComScoreAnalytics_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BitmovinComScoreAnalytics-iOS/BitmovinComScoreAnalytics.framework",
-				"${PODS_ROOT}/BitmovinPlayer/iOS/BitmovinPlayer.framework",
+				"${PODS_ROOT}/BitmovinPlayer/BitmovinPlayer/iOS/BitmovinPlayer.framework",
 				"${PODS_ROOT}/ComScore/ComScore/dynamic/iOS/ComScore.framework",
-				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds/GoogleInteractiveMediaAds.framework",
+				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

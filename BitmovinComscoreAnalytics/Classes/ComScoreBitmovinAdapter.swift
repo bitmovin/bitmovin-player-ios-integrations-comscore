@@ -16,10 +16,10 @@ enum ComScoreState {
 }
 
 class ComScoreBitmovinAdapter: NSObject {
-    private let comScore: SCORReducedRequirementsStreamingAnalytics = SCORReducedRequirementsStreamingAnalytics()
+    private let streamingAnalytics = SCORStreamingAnalytics()
     private let player: BitmovinPlayer
     private let configuration: ComScoreConfiguration
-    private var comScoreContentType: SCORContentType
+    private var contentType: SCORStreamingContentType
     private var internalDictionary: [String: Any] = [:]
     private var state: ComScoreState = .stopped
     private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
@@ -40,7 +40,7 @@ class ComScoreBitmovinAdapter: NSObject {
     init(player: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
         self.player = player
         self.configuration = configuration
-        self.comScoreContentType = metadata.mediaType.toComScore()
+        self.contentType = metadata.mediaType.toComScore()
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()
@@ -63,18 +63,6 @@ class ComScoreBitmovinAdapter: NSObject {
         destroy()
     }
     
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    func userConsentGranted() {
-        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
-        self.configuration.userConsent = .granted
-    }
-    
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    func userConsentDenied() {
-        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
-        self.configuration.userConsent = .denied
-    }
-    
     public func setPersistentLabel(label: String, value: String) {
         notifyHiddenEvent(publisherId: self.configuration.publisherId, label: label, value: value)
         BitLog.d("ComScore persistent label set: [\(label):\(value)]")
@@ -87,7 +75,7 @@ class ComScoreBitmovinAdapter: NSObject {
     
     func update(metadata: ComScoreMetadata) {
         self.dictionary = metadata.buildComScoreMetadataDictionary()
-        self.comScoreContentType = metadata.mediaType.toComScore()
+        self.contentType = metadata.mediaType.toComScore()
     }
     
     func destroy() {
@@ -172,7 +160,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             if state != .stopped {
                 BitLog.d("Stopping ComScore tracking")
                 state = .stopped
-                comScore.stop()
+                streamingAnalytics.notifyPause()
             }
         }
     }
@@ -182,8 +170,14 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             if state != .video {
                 stop()
                 state = .video
+                let contentMetadata = SCORStreamingContentMetadata { builder in
+                    builder?.setMediaType(self.contentType)
+                    builder?.setCustomLabels(self.dictionary)
+                }
+                streamingAnalytics.setMetadata(contentMetadata)
+                streamingAnalytics.notifyPlay()
+                
                 BitLog.d("Starting ComScore video content tracking")
-                comScore.playVideoContentPart(withMetadata: dictionary, andMediaType: comScoreContentType)
             }
         }
     }
@@ -199,25 +193,32 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                 stop()
                 state = .advertisement
                 let assetLength: Int = Int(duration * 1000)
-                let adMetadata = ["ns_st_cl": "\(assetLength)"]
                 
-                var comScoreAdType: SCORAdType = .other
+                var comScoreAdType: SCORStreamingAdvertisementType = .other
                 
                 //TODO, fix bug where we dont categorize multiple pre-rolls properly 
                 if player.isLive {
-                    comScoreAdType = .linearLive
+                    comScoreAdType = .live
                 } else {
                     if timeOffset == 0 {
-                        comScoreAdType = .linearOnDemandPreRoll
+                        comScoreAdType = .onDemandPreRoll
                     } else if timeOffset + duration == player.duration {
-                        comScoreAdType = .linearOnDemandPostRoll
+                        comScoreAdType = .onDemandPostRoll
                     } else {
-                        comScoreAdType = .linearOnDemandMidRoll
+                        comScoreAdType = .onDemandMidRoll
                     }
                 }
                 
+                let advertMetadata = SCORStreamingAdvertisementMetadata { builder in
+                    builder?.setMediaType(comScoreAdType)
+                    builder?.setCustomLabels(
+                        ["ns_st_cl": "\(assetLength)"]
+                    )
+                }
+                streamingAnalytics.setMetadata(advertMetadata)
+                streamingAnalytics.notifyPlay()
+                
                 BitLog.d("Starting ComScore ad play tracking")
-                comScore.playVideoAdvertisement(withMetadata: adMetadata, andMediaType: comScoreAdType)
             }
         }
     }

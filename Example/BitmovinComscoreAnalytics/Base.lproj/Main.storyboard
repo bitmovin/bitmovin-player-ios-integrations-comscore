@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,83 +16,55 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nN-Wu-Vws" userLabel="playerView">
-                                <rect key="frame" x="0.0" y="78" width="1024" height="1288"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qK-fB-hlo">
-                                <rect key="frame" x="76" y="16" width="49" height="30"/>
-                                <state key="normal" title="Unload"/>
-                                <connections>
-                                    <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="FCz-ZA-Gh6"/>
-                                    <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GfN-gD-czC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzQ-FK-KOf">
-                                <rect key="frame" x="133" y="16" width="47" height="30"/>
-                                <state key="normal" title="Reload"/>
-                                <connections>
-                                    <action selector="reloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="CfT-NL-mHi"/>
-                                    <action selector="reloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tXS-jx-fbJ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIV-Jg-AD5">
-                                <rect key="frame" x="188" y="16" width="31" height="30"/>
-                                <state key="normal" title="LIVE"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-sl-lp4" userLabel="Recreate">
-                                <rect key="frame" x="227" y="16" width="61" height="30"/>
-                                <state key="normal" title="Recreate"/>
-                                <connections>
-                                    <action selector="recreateButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jd9-bn-RPs"/>
-                                    <action selector="recreateButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="Z9P-bD-Dx8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-kh-a47">
-                                <rect key="frame" x="36" y="16" width="32" height="30"/>
-                                <state key="normal" title="VOD"/>
-                                <connections>
-                                    <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpOutside" id="lSN-bU-vak"/>
-                                    <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uEA-ki-uJU"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="25B-TG-kU6">
+                                <rect key="frame" x="20" y="44" width="374" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-kh-a47">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="50"/>
+                                        <state key="normal" title="VOD"/>
+                                        <connections>
+                                            <action selector="vodButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="uEA-ki-uJU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qK-fB-hlo">
+                                        <rect key="frame" x="187" y="0.0" width="187" height="50"/>
+                                        <state key="normal" title="Unload"/>
+                                        <connections>
+                                            <action selector="unloadButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GfN-gD-czC"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Cfu-I3-nRS"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kIV-Jg-AD5" firstAttribute="leading" secondItem="zzQ-FK-KOf" secondAttribute="trailing" constant="8" id="K5K-8r-6CB"/>
-                            <constraint firstItem="zzQ-FK-KOf" firstAttribute="leading" secondItem="0qK-fB-hlo" secondAttribute="trailing" constant="8" id="LBA-kK-SOM"/>
-                            <constraint firstItem="PM8-kh-a47" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="16" id="REH-QL-Uc6"/>
-                            <constraint firstItem="0qK-fB-hlo" firstAttribute="leading" secondItem="PM8-kh-a47" secondAttribute="trailing" constant="8" id="RiJ-AG-x1S"/>
-                            <constraint firstItem="0qK-fB-hlo" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="SmV-JK-3JJ"/>
-                            <constraint firstItem="0qK-fB-hlo" firstAttribute="leading" secondItem="PM8-kh-a47" secondAttribute="trailing" constant="8" id="TQ6-RR-VIQ"/>
-                            <constraint firstItem="PM8-kh-a47" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="Xt8-GK-KUq"/>
-                            <constraint firstItem="zzQ-FK-KOf" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="cD7-MA-0Sq"/>
-                            <constraint firstItem="2nN-Wu-Vws" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="d1o-U9-qQ2"/>
-                            <constraint firstItem="Rcr-sl-lp4" firstAttribute="leading" secondItem="kIV-Jg-AD5" secondAttribute="trailing" constant="8" id="g1k-s3-aFf"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2nN-Wu-Vws" secondAttribute="bottom" id="gk5-X3-ciU"/>
-                            <constraint firstItem="kIV-Jg-AD5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="nLF-MX-0WE"/>
-                            <constraint firstItem="Rcr-sl-lp4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="qNP-yQ-eU3"/>
-                            <constraint firstItem="Rcr-sl-lp4" firstAttribute="leading" secondItem="kIV-Jg-AD5" secondAttribute="trailing" constant="8" id="tJL-ta-4Eo"/>
-                            <constraint firstAttribute="trailing" secondItem="2nN-Wu-Vws" secondAttribute="trailing" id="u9p-XS-49a"/>
-                            <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="PM8-kh-a47" secondAttribute="bottom" constant="32" id="vFl-VW-ObD"/>
-                            <constraint firstItem="zzQ-FK-KOf" firstAttribute="leading" secondItem="0qK-fB-hlo" secondAttribute="trailing" constant="8" id="vnf-tw-EUp"/>
-                            <constraint firstItem="kIV-Jg-AD5" firstAttribute="leading" secondItem="zzQ-FK-KOf" secondAttribute="trailing" constant="8" id="zWg-rS-NSA"/>
+                            <constraint firstItem="25B-TG-kU6" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="6f3-GC-mc6"/>
+                            <constraint firstAttribute="trailing" secondItem="2nN-Wu-Vws" secondAttribute="trailing" id="9Ol-hP-X8f"/>
+                            <constraint firstItem="2nN-Wu-Vws" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="HTP-0d-7Id"/>
+                            <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="25B-TG-kU6" secondAttribute="bottom" id="KdL-Pg-i9y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="25B-TG-kU6" secondAttribute="trailing" id="Mke-8t-OKo"/>
+                            <constraint firstItem="2nN-Wu-Vws" firstAttribute="top" secondItem="25B-TG-kU6" secondAttribute="bottom" id="aeC-nC-B9V"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2nN-Wu-Vws" secondAttribute="bottom" id="r5O-Fv-O4A"/>
+                            <constraint firstItem="25B-TG-kU6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zKu-0z-7Ck"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="liveButton" destination="kIV-Jg-AD5" id="GfZ-XW-Tah"/>
                         <outlet property="playerView" destination="2nN-Wu-Vws" id="fcl-Vj-xLm"/>
-                        <outlet property="reloadButton" destination="zzQ-FK-KOf" id="O9q-L3-Wqq"/>
-                        <outlet property="unloadButton" destination="0qK-fB-hlo" id="ahI-hE-jCD"/>
-                        <outlet property="vodButton" destination="PM8-kh-a47" id="z2p-Lx-wlM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.1484375" y="25.915080527086381"/>
+            <point key="canvasLocation" x="50.724637681159422" y="25.446428571428569"/>
         </scene>
     </scenes>
 </document>

@@ -1,46 +1,41 @@
 PODS:
-  - BitmovinComScoreAnalytics (1.4.1):
-    - BitmovinPlayer (~> 2.15)
-    - ComScore (~> 5.8.7)
-  - BitmovinPlayer (2.35.0)
-  - ComScore (5.8.7):
-    - ComScore/Dynamic (= 5.8.7)
-  - ComScore/Dynamic (5.8.7)
-  - GoogleAds-IMA-iOS-SDK (3.7.0)
+  - BitmovinComScoreAnalytics (1.5.0):
+    - BitmovinPlayer (~> 2.45)
+    - ComScore (= 6.3.2)
+  - BitmovinPlayer (2.45.0)
+  - ComScore (6.3.2):
+    - ComScore/Dynamic (= 6.3.2)
+  - ComScore/Dynamic (6.3.2)
+  - GoogleAds-IMA-iOS-SDK (3.11.1)
   - SwiftLint (0.38.2)
 
 DEPENDENCIES:
   - BitmovinComScoreAnalytics (from `../`)
-  - BitmovinPlayer (from `https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git`, tag `2.35.0`)
-  - ComScore (= 5.8.7)
-  - GoogleAds-IMA-iOS-SDK (= 3.7.0)
+  - BitmovinPlayer (= 2.45.0)
+  - ComScore (= 6.3.2)
+  - GoogleAds-IMA-iOS-SDK (= 3.11.1)
   - SwiftLint
 
 SPEC REPOS:
+  https://github.com/bitmovin/cocoapod-specs.git:
+    - BitmovinPlayer
+  https://github.com/CocoaPods/Specs.git:
+    - GoogleAds-IMA-iOS-SDK
   trunk:
     - ComScore
-    - GoogleAds-IMA-iOS-SDK
     - SwiftLint
 
 EXTERNAL SOURCES:
   BitmovinComScoreAnalytics:
     :path: "../"
-  BitmovinPlayer:
-    :git: https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git
-    :tag: 2.35.0
-
-CHECKOUT OPTIONS:
-  BitmovinPlayer:
-    :git: https://github.com/bitmovin/bitmovin-player-ios-sdk-cocoapod.git
-    :tag: 2.35.0
 
 SPEC CHECKSUMS:
-  BitmovinComScoreAnalytics: 99db65ec19e97114d6ee976e756bca9a0465bc2f
-  BitmovinPlayer: ae4903f52305beb5cd98ed950de6fb3bb6c5f9a6
-  ComScore: 4d377376e44c77de1e435a32fdf38d2507d6906c
-  GoogleAds-IMA-iOS-SDK: cdc8901c00aa1aa4a383c9180df4c59bc94e2dcf
+  BitmovinComScoreAnalytics: fa801816ebe0309d32adc0ed8d0c9f64da26de36
+  BitmovinPlayer: d42a27bbba2b120e3018dc3d7c489d8bf205e462
+  ComScore: 10132e2fb74c3934489f1100da252f983061971e
+  GoogleAds-IMA-iOS-SDK: 5bc743cca6f70bb403f34a6a336a2dbe70e12e1e
   SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 8ebe3991a0fd552a368d954733f1d5a357713ab5
+PODFILE CHECKSUM: a716fa8539d18555889dbd42dfe5655d230ea06a
 
 COCOAPODS: 1.9.1

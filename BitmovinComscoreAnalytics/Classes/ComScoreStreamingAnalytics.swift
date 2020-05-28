@@ -42,22 +42,6 @@ public class ComScoreStreamingAnalytics {
     }
     
     /**
-     Set user consent to ComScoreUserConsent.GRANTED
-     */
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    public func userConsentGranted() {
-        comScoreAdapter.userConsentGranted()
-    }
-    
-    /**
-     Set user consent to ComScoreUserConsent.DENIED
-     */
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    public func userConsentDenied() {
-        comScoreAdapter.userConsentDenied()
-    }
-    
-    /**
      Set a persistent label on the ComScore PublisherConfiguration
      - Parameters:
      - label: The label name
