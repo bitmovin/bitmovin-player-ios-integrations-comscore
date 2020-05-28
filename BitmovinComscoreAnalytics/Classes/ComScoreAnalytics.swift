@@ -15,14 +15,17 @@ public final class ComScoreAnalytics {
         serialQueue.sync {
             if !started {
                 ComScoreAnalytics.configuration = configuration
-                let builder = SCORPublisherConfigurationBuilder()
-                builder.publisherId = configuration.publisherId
-                builder.publisherSecret = configuration.publisherSecret
-                builder.applicationName = configuration.applicationName
+                let publisherConfig = SCORPublisherConfiguration(builderBlock: { builder in
+                    builder?.publisherId = configuration.publisherId
+                })
+                SCORAnalytics.configuration().addClient(with: publisherConfig)
+                SCORAnalytics.configuration().applicationName = configuration.applicationName
                 if configuration.userConsent != .unknown {
-                    builder.persistentLabels = ["cs_ucfr": configuration.userConsent.rawValue]
+                    SCORAnalytics.configuration().setPersistentLabelWithName(
+                        "cs_ucfr",
+                        value: configuration.userConsent.rawValue
+                    )
                 }
-                SCORAnalytics.configuration()?.addClient(with: builder.build())
                 SCORAnalytics.start()
                 started = true
             } else {
