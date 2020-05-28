@@ -63,18 +63,6 @@ class ComScoreBitmovinAdapter: NSObject {
         destroy()
     }
     
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    func userConsentGranted() {
-        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.granted.rawValue)
-        self.configuration.userConsent = .granted
-    }
-    
-    @available(*, deprecated, message: "Deprecated as of release 1.4.0")
-    func userConsentDenied() {
-        setPersistentLabel(label: "cs_ucfr", value: ComScoreUserConsent.denied.rawValue)
-        self.configuration.userConsent = .denied
-    }
-    
     public func setPersistentLabel(label: String, value: String) {
         notifyHiddenEvent(publisherId: self.configuration.publisherId, label: label, value: value)
         BitLog.d("ComScore persistent label set: [\(label):\(value)]")
