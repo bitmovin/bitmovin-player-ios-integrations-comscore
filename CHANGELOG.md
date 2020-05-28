@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Updated ComScore SDK to 6.2.3
 - Migrated to ComScore SDK to 6.2.3
+- Updated player to version 2.45.0
 
 ### Removed
 - userConsentGranted()
