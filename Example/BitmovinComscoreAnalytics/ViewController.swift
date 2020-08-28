@@ -43,25 +43,25 @@ class ViewController: UIViewController {
 
         let adConfig = AdvertisingConfiguration(schedule: [preRoll, midRoll, postRoll])
         config.advertisingConfiguration = adConfig
-        
+
         // Create player based on player configuration
         let player = BitmovinPlayer(configuration: config)
         self.bitmovinPlayer = player
-        
+
         if bitmovinPlayerView == nil {
             // Create player view and pass the player instance to it
             bitmovinPlayerView = BMPBitmovinPlayerView(player: player, frame: .zero)
-            
+
             guard let view = bitmovinPlayerView else {
                 return
             }
-            
+
             // Size the player view
             view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             view.frame = playerView.bounds
             playerView.addSubview(view)
             playerView.bringSubviewToFront(view)
-            
+
         } else {
             bitmovinPlayerView?.player = bitmovinPlayer
         }
@@ -101,7 +101,10 @@ class ViewController: UIViewController {
 
         if let bitmovinPlayer = bitmovinPlayer {
             do {
-                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, metadata: comScoreMetadata)
+                try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(
+                    bitmovinPlayer: bitmovinPlayer,
+                    metadata: comScoreMetadata
+                )
             } catch {
                 print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
             }
