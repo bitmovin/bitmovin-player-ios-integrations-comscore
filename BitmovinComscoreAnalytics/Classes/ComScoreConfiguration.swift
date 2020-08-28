@@ -11,7 +11,7 @@ public class ComScoreConfiguration {
     public let publisherId: String
     public let applicationName: String
     public var userConsent: ComScoreUserConsent
-    public let enableChildDirectedApplicationMode: Bool
+    public let childDirectedAppMode: Bool
     public var debug: Bool
 
     // MARK: - initializer
@@ -25,11 +25,11 @@ public class ComScoreConfiguration {
      - enableChildDirectedApplicationMode: Controls collection of advertising id within the app
      - debug: Debug mode
      */
-    public init(publisherId: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown, enableChildDirectedApplicationMode: Bool = false, debug: Bool = false) {
+    public init(publisherId: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown, childDirectedAppMode: Bool = false, debug: Bool = false) {
         self.publisherId = publisherId
         self.applicationName = applicationName
         self.userConsent = userConsent
-        self.enableChildDirectedApplicationMode = enableChildDirectedApplicationMode
+        self.childDirectedAppMode = childDirectedAppMode
         self.debug = debug
     }
 }

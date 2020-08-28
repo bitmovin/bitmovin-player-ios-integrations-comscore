@@ -26,7 +26,7 @@ public final class ComScoreAnalytics {
                         value: configuration.userConsent.rawValue
                     )
                 }
-                if configuration.enableChildDirectedApplicationMode {
+                if configuration.childDirectedAppMode {
                     SCORAnalytics.configuration().enableChildDirectedApplicationMode()
                 }
                 SCORAnalytics.start()
