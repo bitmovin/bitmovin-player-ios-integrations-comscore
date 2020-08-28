@@ -11,21 +11,25 @@ public class ComScoreConfiguration {
     public let publisherId: String
     public let applicationName: String
     public var userConsent: ComScoreUserConsent
-    public var isDebug: Bool
+    public let enableChildDirectedApplicationMode: Bool
+    public var debug: Bool
 
     // MARK: - initializer
     /**
      Initializes a new ComSoreConfiguration with application specific information
      
      - Parameters:
-     - publisherId: Publisher ID assigned by ComScore
-     - applicationName: The name of your application that will be used for ComScore tracking
-     - userConsent: Whether the user has given their consent to have data collected by ComScore
+     - publisherId: Publisher id assigned by ComScore
+     - applicationName: Application name used for ComScore tracking
+     - userConsent: User consent for ComScore data collection
+     - enableChildDirectedApplicationMode: Controls collection of advertising id within the app
+     - debug: Debug mode
      */
-    public init(publisherId: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown, isDebug: Bool = false) {
+    public init(publisherId: String, applicationName: String, userConsent: ComScoreUserConsent = .unknown, enableChildDirectedApplicationMode: Bool = false, debug: Bool = false) {
         self.publisherId = publisherId
         self.applicationName = applicationName
         self.userConsent = userConsent
-        self.isDebug = isDebug
+        self.enableChildDirectedApplicationMode = enableChildDirectedApplicationMode
+        self.debug = debug
     }
 }

@@ -26,6 +26,9 @@ public final class ComScoreAnalytics {
                         value: configuration.userConsent.rawValue
                     )
                 }
+                if configuration.enableChildDirectedApplicationMode {
+                    SCORAnalytics.configuration().enableChildDirectedApplicationMode()
+                }
                 SCORAnalytics.start()
                 started = true
             } else {
