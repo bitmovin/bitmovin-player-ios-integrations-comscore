@@ -56,7 +56,7 @@ class ComScoreBitmovinAdapter: NSObject {
             name: UIApplication.willEnterForegroundNotification,
             object: nil
         )
-        BitLog.isEnabled = configuration.isDebug
+        BitLog.isEnabled = configuration.debug
     }
     
     deinit {

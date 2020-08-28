@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             publisherId: "YOUR_PUBLISHER_ID",
             applicationName: "YOUR_APPLICATION_NAME",
             userConsent: .granted,
-            isDebug: true
+            debug: true
         )
         ComScoreAnalytics.start(configuration: comscoreConfiguration)
 
