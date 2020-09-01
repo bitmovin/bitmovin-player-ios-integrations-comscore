@@ -25,7 +25,7 @@ class ComScoreBitmovinAdapter: NSObject {
     private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
     private var currentAdDuration: TimeInterval = 0
     private var currentAdOffset: TimeInterval = 0
-    
+
     var dictionary: [String: Any] {
         get {
             let length = assetLength()
@@ -36,7 +36,7 @@ class ComScoreBitmovinAdapter: NSObject {
             self.internalDictionary = dictionary
         }
     }
-    
+
     init(player: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
         self.player = player
         self.configuration = configuration
@@ -56,13 +56,13 @@ class ComScoreBitmovinAdapter: NSObject {
             name: UIApplication.willEnterForegroundNotification,
             object: nil
         )
-        BitLog.isEnabled = configuration.isDebug
+        BitLog.isEnabled = configuration.debug
     }
-    
+
     deinit {
         destroy()
     }
-    
+
     public func setPersistentLabel(label: String, value: String) {
         notifyHiddenEvent(publisherId: self.configuration.publisherId, label: label, value: value)
         BitLog.d("ComScore persistent label set: [\(label):\(value)]")
@@ -72,12 +72,12 @@ class ComScoreBitmovinAdapter: NSObject {
         notifyHiddenEvents(publisherId: self.configuration.publisherId, labels: labels)
         BitLog.d("ComScore persistent labels set: [\(labels.map { "\($0.key):\($0.value)"})]")
     }
-    
+
     func update(metadata: ComScoreMetadata) {
         self.dictionary = metadata.buildComScoreMetadataDictionary()
         self.contentType = metadata.mediaType.toComScore()
     }
-    
+
     func destroy() {
         self.player.remove(listener: self)
         NotificationCenter.default.removeObserver(self,
@@ -87,7 +87,7 @@ class ComScoreBitmovinAdapter: NSObject {
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
     }
-    
+
     func assetLength() -> TimeInterval {
         var assetLength = player.duration * 1000
         if assetLength == TimeInterval.infinity {
@@ -95,11 +95,11 @@ class ComScoreBitmovinAdapter: NSObject {
         }
         return assetLength
     }
-    
+
     @objc func applicationWillResignActive() {
         stop()
     }
-    
+
     @objc func applicationWillBecomeActive() {
         resume()
     }
@@ -109,9 +109,9 @@ extension ComScoreBitmovinAdapter: PlayerListener {
     func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
         stop()
     }
-    
+
     func onPaused(_ event: PausedEvent) {
-        
+
         //TODO: remove once we have tvOS support for this method
         #if os(iOS)
         // ComScore only wants us to call stop if we are NOT in an ad break
@@ -122,26 +122,26 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         stop()
         #endif
     }
-    
+
     func onPlay(_ event: PlayEvent) {
         // ComScore only wants us to resume into video content. We should not transition state when pause / play is called in an ad
         resume()
     }
-    
+
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
         stop()
     }
-    
+
     func onAdStarted(_ event: AdStartedEvent) {
         currentAdDuration = event.duration
         currentAdOffset = event.timeOffset
         playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
     }
-    
+
     func onAdFinished(_ event: AdFinishedEvent) {
         playVideoContentPart()
     }
-    
+
     private func resume() {
         // TODO remove once we have iOS support
         #if os(iOS)
@@ -154,7 +154,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         playVideoContentPart()
         #endif
     }
-    
+
     private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
@@ -164,7 +164,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
             }
         }
     }
-    
+
     private func playVideoContentPart() {
         self.accessQueue.sync {
             if state != .video {
@@ -176,26 +176,26 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                 }
                 streamingAnalytics.setMetadata(contentMetadata)
                 streamingAnalytics.notifyPlay()
-                
+
                 BitLog.d("Starting ComScore video content tracking")
             }
         }
     }
-    
+
     private func playAdContentPart(duration: TimeInterval, timeOffset: TimeInterval) {
         // This occurs on session start when Play is fired before AdStarted. Just return here as we will enter the ad once the AdStarted event is fired
         if duration == 0 {
             return
         }
-        
+
         self.accessQueue.sync {
             if state != .advertisement {
                 stop()
                 state = .advertisement
                 let assetLength: Int = Int(duration * 1000)
-                
+
                 var comScoreAdType: SCORStreamingAdvertisementType = .other
-                
+
                 //TODO, fix bug where we dont categorize multiple pre-rolls properly 
                 if player.isLive {
                     comScoreAdType = .live
@@ -208,7 +208,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                         comScoreAdType = .onDemandMidRoll
                     }
                 }
-                
+
                 let advertMetadata = SCORStreamingAdvertisementMetadata { builder in
                     builder?.setMediaType(comScoreAdType)
                     builder?.setCustomLabels(
@@ -217,7 +217,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
                 }
                 streamingAnalytics.setMetadata(advertMetadata)
                 streamingAnalytics.notifyPlay()
-                
+
                 BitLog.d("Starting ComScore ad play tracking")
             }
         }

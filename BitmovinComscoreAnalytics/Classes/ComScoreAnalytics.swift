@@ -5,7 +5,7 @@ public final class ComScoreAnalytics {
     private static let serialQueue = DispatchQueue(label: "com.bitmovin.player.integrations.comscore.ComScoreAnalytics")
     private static var started: Bool = false
     private static var configuration: ComScoreConfiguration?
-    
+
     /**
      Start ComScoreAnalytics app level tracking
      - Parameters:
@@ -26,6 +26,9 @@ public final class ComScoreAnalytics {
                         value: configuration.userConsent.rawValue
                     )
                 }
+                if configuration.childDirectedAppMode {
+                    SCORAnalytics.configuration().enableChildDirectedApplicationMode()
+                }
                 SCORAnalytics.start()
                 started = true
             } else {
@@ -33,8 +36,7 @@ public final class ComScoreAnalytics {
             }
         }
     }
-    
-    
+
     /**
      Set a persistent label on the ComScore PublisherConfiguration
      - Parameters:
@@ -49,7 +51,7 @@ public final class ComScoreAnalytics {
             }
         }
     }
-    
+
     /**
      Set persistent labels on the ComScore PublisherConfiguration
      - Parameters:
@@ -63,7 +65,7 @@ public final class ComScoreAnalytics {
             }
         }
     }
-    
+
     public static func createComScoreStreamingAnalytics(bitmovinPlayer: BitmovinPlayer, metadata: ComScoreMetadata) throws -> ComScoreStreamingAnalytics? {
         if started {
             return ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, configuration: ComScoreAnalytics.configuration!, metadata: metadata)
@@ -71,7 +73,7 @@ public final class ComScoreAnalytics {
             throw ComScoreError.notStarted
         }
     }
-    
+
     public static func isActive() -> Bool {
         return ComScoreAnalytics.started
     }
