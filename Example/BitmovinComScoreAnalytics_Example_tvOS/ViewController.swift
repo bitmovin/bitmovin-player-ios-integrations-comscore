@@ -12,7 +12,7 @@ import BitmovinPlayer
 import ComScore
 
 class ViewController: UIViewController {
-    var bitmovinPlayer: BitmovinPlayer?
+    var bitmovinPlayer: Player?
     @IBOutlet var playerView: UIView!
     var comScoreStreamingAnalytics: ComScoreStreamingAnalytics?
     
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             try config.setSourceItem(url: streamUrl)
             
             // Create player based on player configuration
-            let player = BitmovinPlayer(configuration: config)
+            let player = Player(configuration: config)
             self.bitmovinPlayer = player
             
             self.bitmovinPlayer?.add(listener: self)
