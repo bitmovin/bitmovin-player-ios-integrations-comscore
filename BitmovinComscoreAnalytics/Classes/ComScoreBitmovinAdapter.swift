@@ -17,7 +17,7 @@ enum ComScoreState {
 
 class ComScoreBitmovinAdapter: NSObject {
     private let streamingAnalytics = SCORStreamingAnalytics()
-    private let player: BitmovinPlayer
+    private let player: Player
     private let configuration: ComScoreConfiguration
     private var contentType: SCORStreamingContentType
     private var internalDictionary: [String: Any] = [:]
@@ -37,7 +37,7 @@ class ComScoreBitmovinAdapter: NSObject {
         }
     }
 
-    init(player: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
+    init(player: Player, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
         self.player = player
         self.configuration = configuration
         self.contentType = metadata.mediaType.toComScore()

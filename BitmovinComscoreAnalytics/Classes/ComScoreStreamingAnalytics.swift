@@ -19,7 +19,7 @@ public class ComScoreStreamingAnalytics {
      - player: BitmovinPlayer instance to track
      - metadata: ComScore metadata associated with the content you are tracking
      */
-    init(bitmovinPlayer: BitmovinPlayer, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
+    init(bitmovinPlayer: Player, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
         self.comScoreAdapter = ComScoreBitmovinAdapter(player: bitmovinPlayer, configuration: configuration, metadata: metadata)
     }
 

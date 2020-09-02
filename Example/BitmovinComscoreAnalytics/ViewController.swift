@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     let adTagVast1 = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator="
     let adTagVast2 = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/32573358/2nd_test_ad_unit&ciu_szs=300x100&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=[referrer_url]&description_url=[description_url]&correlator="
 
-    var bitmovinPlayer: BitmovinPlayer?
+    var bitmovinPlayer: Player?
     @IBOutlet var playerView: UIView!
 
     var comScoreStreamingAnalytics: ComScoreStreamingAnalytics?
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         config.advertisingConfiguration = adConfig
 
         // Create player based on player configuration
-        let player = BitmovinPlayer(configuration: config)
+        let player = Player(configuration: config)
         self.bitmovinPlayer = player
 
         if bitmovinPlayerView == nil {
