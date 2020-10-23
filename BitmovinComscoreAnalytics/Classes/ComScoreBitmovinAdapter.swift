@@ -80,12 +80,16 @@ class ComScoreBitmovinAdapter: NSObject {
 
     func destroy() {
         self.player.remove(listener: self)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.willResignActiveNotification,
-                                                  object: nil)
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.willEnterForegroundNotification,
-                                                  object: nil)
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
     }
 
     func assetLength() -> TimeInterval {
@@ -142,7 +146,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         playVideoContentPart()
     }
 
-    private func resume() {
+    func resume() {
         // TODO remove once we have iOS support
         #if os(iOS)
         if player.isAd {
@@ -155,7 +159,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         #endif
     }
 
-    private func stop() {
+    func stop() {
         self.accessQueue.sync {
             if state != .stopped {
                 BitLog.d("Stopping ComScore tracking")
