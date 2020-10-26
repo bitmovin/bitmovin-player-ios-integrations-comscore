@@ -25,6 +25,12 @@ class ComScoreBitmovinAdapter: NSObject {
     private let accessQueue = DispatchQueue(label: "ComScoreQueue", attributes: .concurrent)
     private var currentAdDuration: TimeInterval = 0
     private var currentAdOffset: TimeInterval = 0
+    
+    var suppressAnalytics = false {
+        didSet {
+            suppressAnalytics ? stop() : resume()
+        }
+    }
 
     var dictionary: [String: Any] {
         get {
@@ -107,46 +113,8 @@ class ComScoreBitmovinAdapter: NSObject {
     @objc func applicationWillBecomeActive() {
         resume()
     }
-}
-
-extension ComScoreBitmovinAdapter: PlayerListener {
-    func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
-        stop()
-    }
-
-    func onPaused(_ event: PausedEvent) {
-
-        //TODO: remove once we have tvOS support for this method
-        #if os(iOS)
-        // ComScore only wants us to call stop if we are NOT in an ad break
-        if !player.isAd {
-            stop()
-        }
-        #else
-        stop()
-        #endif
-    }
-
-    func onPlay(_ event: PlayEvent) {
-        // ComScore only wants us to resume into video content. We should not transition state when pause / play is called in an ad
-        resume()
-    }
-
-    func onSourceUnloaded(_ event: SourceUnloadedEvent) {
-        stop()
-    }
-
-    func onAdStarted(_ event: AdStartedEvent) {
-        currentAdDuration = event.duration
-        currentAdOffset = event.timeOffset
-        playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
-    }
-
-    func onAdFinished(_ event: AdFinishedEvent) {
-        playVideoContentPart()
-    }
-
-    func resume() {
+    
+    private func resume() {
         // TODO remove once we have iOS support
         #if os(iOS)
         if player.isAd {
@@ -159,7 +127,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
         #endif
     }
 
-    func stop() {
+    private func stop() {
         self.accessQueue.sync {
             if state != .stopped {
                 BitLog.d("Stopping ComScore tracking")
@@ -200,7 +168,7 @@ extension ComScoreBitmovinAdapter: PlayerListener {
 
                 var comScoreAdType: SCORStreamingAdvertisementType = .other
 
-                //TODO, fix bug where we dont categorize multiple pre-rolls properly 
+                //TODO, fix bug where we dont categorize multiple pre-rolls properly
                 if player.isLive {
                     comScoreAdType = .live
                 } else {
@@ -224,6 +192,62 @@ extension ComScoreBitmovinAdapter: PlayerListener {
 
                 BitLog.d("Starting ComScore ad play tracking")
             }
+        }
+    }
+    
+    private func handleEvent(_ function: () -> ()) {
+        if !suppressAnalytics {
+            function()
+        }
+    }
+}
+
+extension ComScoreBitmovinAdapter: PlayerListener {
+    func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
+        handleEvent {
+            stop()
+        }
+    }
+
+    func onPaused(_ event: PausedEvent) {
+        handleEvent {
+            //TODO: remove once we have tvOS support for this method
+            #if os(iOS)
+            // ComScore only wants us to call stop if we are NOT in an ad break
+            if !player.isAd {
+                stop()
+            }
+            #else
+            stop()
+            #endif
+        }
+    }
+
+    func onPlay(_ event: PlayEvent) {
+        handleEvent {
+            // ComScore only wants us to resume into video content
+            // We should not transition state when pause / play is called in an ad
+            resume()
+        }
+    }
+
+    func onSourceUnloaded(_ event: SourceUnloadedEvent) {
+        handleEvent {
+            stop()
+        }
+    }
+
+    func onAdStarted(_ event: AdStartedEvent) {
+        handleEvent {
+            currentAdDuration = event.duration
+            currentAdOffset = event.timeOffset
+            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
+        }
+    }
+
+    func onAdFinished(_ event: AdFinishedEvent) {
+        handleEvent {
+            playVideoContentPart()
         }
     }
 }
