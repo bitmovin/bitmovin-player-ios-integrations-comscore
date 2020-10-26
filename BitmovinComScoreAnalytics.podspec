@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'BitmovinComScoreAnalytics'
-  s.version          = '1.7.1'
+  s.version          = '1.8.0'
   s.summary          = 'ComScore Analytics integration for the Bitmovin Player iOS SDK'
   s.description      = <<-DESC
   Comscore Analytics Integration for the Bitmovin Player iOS SDK
