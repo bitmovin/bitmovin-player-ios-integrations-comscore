@@ -65,7 +65,7 @@ public class ComScoreStreamingAnalytics {
     }
     
     /**
-     Stop/resume ComScore streaming analytics tracking
+     Toggle ComScore streaming analytics tracking
      */
     public func suppressAnalytics(suppress: Bool) {
         adapter.suppressAnalytics = suppress
