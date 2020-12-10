@@ -26,11 +26,7 @@ class ComScoreBitmovinAdapter: NSObject {
     private var currentAdDuration: TimeInterval = 0
     private var currentAdOffset: TimeInterval = 0
     
-    var suppressAnalytics = false {
-        didSet {
-            suppressAnalytics ? stop() : resume()
-        }
-    }
+    var suppressAdAnalytics = false
 
     var dictionary: [String: Any] {
         get {
@@ -115,16 +111,11 @@ class ComScoreBitmovinAdapter: NSObject {
     }
     
     private func resume() {
-        // TODO remove once we have iOS support
-        #if os(iOS)
         if player.isAd {
             playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
         } else {
             playVideoContentPart()
         }
-        #else
-        playVideoContentPart()
-        #endif
     }
 
     private func stop() {
@@ -159,10 +150,17 @@ class ComScoreBitmovinAdapter: NSObject {
         if duration == 0 {
             return
         }
-
+        
         self.accessQueue.sync {
             if state != .advertisement {
                 stop()
+                
+                // Do not track ad content if ad analytics is suppressed
+                if suppressAdAnalytics {
+                    BitLog.d("Not tracking ad content as ad analytics is suppressed")
+                    return
+                }
+                
                 state = .advertisement
                 let assetLength: Int = Int(duration * 1000)
 
@@ -194,60 +192,35 @@ class ComScoreBitmovinAdapter: NSObject {
             }
         }
     }
-    
-    private func handleEvent(_ function: () -> ()) {
-        if !suppressAnalytics {
-            function()
-        }
-    }
 }
 
 extension ComScoreBitmovinAdapter: PlayerListener {
     func onPlaybackFinished(_ event: PlaybackFinishedEvent) {
-        handleEvent {
-            stop()
-        }
+        stop()
     }
 
     func onPaused(_ event: PausedEvent) {
-        handleEvent {
-            //TODO: remove once we have tvOS support for this method
-            #if os(iOS)
-            // ComScore only wants us to call stop if we are NOT in an ad break
-            if !player.isAd {
-                stop()
-            }
-            #else
+        // ComScore only wants us to call stop if we are NOT in an ad break
+        if !player.isAd {
             stop()
-            #endif
         }
     }
 
     func onPlay(_ event: PlayEvent) {
-        handleEvent {
-            // ComScore only wants us to resume into video content
-            // We should not transition state when pause / play is called in an ad
-            resume()
-        }
+        resume()
     }
 
     func onSourceUnloaded(_ event: SourceUnloadedEvent) {
-        handleEvent {
-            stop()
-        }
+        stop()
     }
 
     func onAdStarted(_ event: AdStartedEvent) {
-        handleEvent {
-            currentAdDuration = event.duration
-            currentAdOffset = event.timeOffset
-            playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
-        }
+        currentAdDuration = event.duration
+        currentAdOffset = event.timeOffset
+        playAdContentPart(duration: currentAdDuration, timeOffset: currentAdOffset)
     }
 
     func onAdFinished(_ event: AdFinishedEvent) {
-        handleEvent {
-            playVideoContentPart()
-        }
+        playVideoContentPart()
     }
 }
