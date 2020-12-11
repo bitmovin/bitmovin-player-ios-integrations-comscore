@@ -65,9 +65,11 @@ public class ComScoreStreamingAnalytics {
     }
     
     /**
-     Toggle ComScore streaming analytics tracking
+     Enable/disable comscore ad content tracking
+     - Parameters:
+     - suppress: The enable/disable flag
      */
-    public func suppressAnalytics(suppress: Bool) {
-        adapter.suppressAnalytics = suppress
+    public func suppressAdAnalytics(suppress: Bool) {
+        adapter.suppressAdAnalytics = suppress
     }
 }
