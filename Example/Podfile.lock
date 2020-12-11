@@ -1,5 +1,5 @@
 PODS:
-  - BitmovinComScoreAnalytics (1.6.1):
+  - BitmovinComScoreAnalytics (1.8.1):
     - BitmovinPlayer (~> 2.51)
     - ComScore (= 6.6.0)
   - BitmovinPlayer (2.51.0)
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BitmovinComScoreAnalytics: 983287139fece3f60e6616db73ce8f7a74d52b7d
+  BitmovinComScoreAnalytics: 67cb404422eb2c0f248b2e7a3bcb6edae24e9ff7
   BitmovinPlayer: 81d4831f53a3db0b7cc48bdd535ceec2238566a8
   ComScore: 13377ad241b0ec2f006eac64ec5cdc431f754430
   GoogleAds-IMA-iOS-SDK: 5bc743cca6f70bb403f34a6a336a2dbe70e12e1e
