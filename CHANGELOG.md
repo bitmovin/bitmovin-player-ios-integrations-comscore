@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.9.0]
 
+### Added
+- `suppressAnalytics` flag in `ComScoreBitmovinAdapter` constructor
+
 ### Changed
 - `suppressAnalytics` flag in `ComScoreBitmovinAdapter` no longer disables video content tracking
 
