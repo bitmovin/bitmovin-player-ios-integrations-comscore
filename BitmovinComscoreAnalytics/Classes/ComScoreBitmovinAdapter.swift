@@ -26,7 +26,7 @@ class ComScoreBitmovinAdapter: NSObject {
     private var currentAdDuration: TimeInterval = 0
     private var currentAdOffset: TimeInterval = 0
     
-    var suppressAdAnalytics = false
+    var suppressAdAnalytics: Bool
 
     var dictionary: [String: Any] {
         get {
@@ -39,10 +39,11 @@ class ComScoreBitmovinAdapter: NSObject {
         }
     }
 
-    init(player: Player, configuration: ComScoreConfiguration, metadata: ComScoreMetadata) {
+    init(player: Player, configuration: ComScoreConfiguration, metadata: ComScoreMetadata, suppressAdAnalytics: Bool = false) {
         self.player = player
         self.configuration = configuration
         self.contentType = metadata.mediaType.toComScore()
+        self.suppressAdAnalytics = suppressAdAnalytics
         super.init()
         self.player.add(listener: self)
         self.dictionary = metadata.buildComScoreMetadataDictionary()

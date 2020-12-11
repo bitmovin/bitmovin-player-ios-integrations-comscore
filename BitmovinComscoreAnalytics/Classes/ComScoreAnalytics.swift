@@ -66,9 +66,14 @@ public final class ComScoreAnalytics {
         }
     }
 
-    public static func createComScoreStreamingAnalytics(bitmovinPlayer: Player, metadata: ComScoreMetadata) throws -> ComScoreStreamingAnalytics? {
+    public static func createComScoreStreamingAnalytics(bitmovinPlayer: Player, metadata: ComScoreMetadata, suppressAdAnalytics: Bool = false) throws -> ComScoreStreamingAnalytics? {
         if started {
-            return ComScoreStreamingAnalytics(bitmovinPlayer: bitmovinPlayer, configuration: ComScoreAnalytics.configuration!, metadata: metadata)
+            return ComScoreStreamingAnalytics(
+                bitmovinPlayer: bitmovinPlayer,
+                configuration: ComScoreAnalytics.configuration!,
+                metadata: metadata,
+                suppressAdAnalytics: suppressAdAnalytics
+            )
         } else {
             throw ComScoreError.notStarted
         }
