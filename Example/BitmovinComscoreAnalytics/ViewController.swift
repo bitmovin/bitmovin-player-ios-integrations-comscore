@@ -103,7 +103,8 @@ class ViewController: UIViewController {
             do {
                 try comScoreStreamingAnalytics = ComScoreAnalytics.createComScoreStreamingAnalytics(
                     bitmovinPlayer: bitmovinPlayer,
-                    metadata: comScoreMetadata
+                    metadata: comScoreMetadata,
+                    suppressAdAnalytics: false
                 )
             } catch {
                 print("ComScoreAnalytics must be started before creating a ComScoreStreamingAnalytics object")
